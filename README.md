@@ -5,14 +5,16 @@
 <!-- project philosophy -->
 <img src="./readme/title2.svg"/>
 
-> A mobile app for ordering coffee on-the-go, making it easier for coffee lovers to get their favorite beverages without waiting in line.
+> A mobile app for outfit checking, making it easier for stylish people or the ones who find it difficult to choose their right clothing combo, offering a detailed advice to what change or keep in their outfit.
 >
-> Coffee Express aims to streamline the coffee-ordering process by providing a user-friendly platform for customers to place orders and pick up their coffee at their convenience. We believe in enhancing the coffee experience by saving time and ensuring customer satisfaction.
+> Chic Check aims to streamline the outfit-pick process by providing a user-friendly platform for all people to check or pick the right outfit through their mobile phone camera at their convenience. We believe in improving peoples outfit pick through a smooth experience while saving time and ensuring their satisfaction.
 
-### User Stories
-- As a user, I want to browse the menu, so I can find my favorite coffee drinks.
-- As a user, I want to customize my order, so I can add or remove ingredients according to my preferences.
-- As a user, I want to pay for my order through the app, so I can avoid waiting in line at the store.
+## User Stories
+
+### User
+- As a user, I want to check my outfit, so I can make sure Im wearing the right outfit combo.
+- As a user, I want to customize my out, so I can change or keep my outfit according to what my app suggests.
+- As a user, I want to check for the latest outfit trends and whats popular on the app, so it can ease up my choice throughtout the days.
 
 <br><br>
 <!-- Tech stack -->
