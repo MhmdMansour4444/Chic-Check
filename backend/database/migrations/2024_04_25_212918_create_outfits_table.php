@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('name', 100)->nullable();
             $table->dateTime('date_created')->default(now());
             $table->tinyInteger('is_public')->default(0);
+            $table->float('outfit_score')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');

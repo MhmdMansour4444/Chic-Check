@@ -13,13 +13,15 @@ return new class extends Migration
     {
         Schema::create('item_compatibility', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('first_clothes_id');
+            $table->unsignedBigInteger('second_clothes_id');
+            $table->float('match_percentage')->nullable();
             $table->timestamps();
+            $table->foreign('first_clothes_id')->references('id')->on('clothes')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('second_clothes_id')->references('id')->on('clothes')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('item_compatibility');
