@@ -9,14 +9,9 @@ class Forum extends Model
 {
     protected $fillable = ['name', 'description'];
 
-    public function user()
+    public function posts()
     {
-        return $this->belongsTo(User::class, 'user_id');
-    }
-
-    public function post()
-    {
-        return $this->belongsTo(Post::class, 'post_id');
+        return $this->hasMany(Post::class, 'forum_id');
     }
 }
 ;
