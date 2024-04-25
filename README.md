@@ -12,8 +12,8 @@
 ## User Stories
 
 ### User
-- As a user, I want to check my outfit, so I can make sure Im wearing the right outfit combo.
-- As a user, I want to customize my out, so I can change or keep my outfit according to what my app suggests.
+- As a user, I want to check my an item on my body on the app, so I can make sure Im wearing the right outfit combo.
+- As a user, I want to customize my outfit, so I can change or keep specific items according to a criteria and save it.
 - As a user, I want to check for the latest outfit trends and whats popular on the app, so it can ease up my choice throughtout the days.
 
 <br><br>
