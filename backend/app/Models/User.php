@@ -47,15 +47,6 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany(Post::class, 'user_id');
     }
 
-    public function upvotes()
-    {
-        return $this->hasMany(Upvote::class, 'user_id');
-    }
-
-    public function downvotes()
-    {
-        return $this->hasMany(Downvote::class, 'user_id');
-    }
 
     public function wardrobes()
     {
