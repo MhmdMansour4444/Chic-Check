@@ -7,5 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class WardrobeCloth extends Model
 {
-    use HasFactory;
+    protected $fillable = ['clothes_id', 'wardrobe_id'];
+
 }

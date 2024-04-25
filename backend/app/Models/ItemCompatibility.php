@@ -7,5 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class ItemCompatibility extends Model
 {
-    use HasFactory;
+    protected $fillable = ['first_clothes_id', 'second_clothes_id', 'match_percentage'];
+    
 }
