@@ -13,13 +13,14 @@ return new class extends Migration
     {
         Schema::create('outfit_clothes', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->unsignedInteger('clothing_id');
+            $table->primary(['outfit_id', 'clothing_id']);
+            
+            $table->foreign('outfit_id')->references('id')->on('outfits')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('clothing_id')->references('id')->on('clothes')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('outfit_clothes');

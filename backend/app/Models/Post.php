@@ -24,14 +24,5 @@ class Post extends Model
         return $this->belongsTo(Forum::class, 'forum_id');
     }
 
-    public function upvotes()
-    {
-        return $this->hasMany(Upvote::class, 'post_id');
-    }
-
-    public function downvotes()
-    {
-        return $this->hasMany(Downvote::class, 'post_id');
-    }
 
 }
