@@ -6,7 +6,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      backgroundColor: Color(0xFF293241),
+      backgroundColor: Color.fromARGB(255, 243, 243, 243),
       body: SafeArea(
         child: Center(
           child: Column(
@@ -23,7 +23,7 @@ class LoginPage extends StatelessWidget {
               Text(
                 'Chic Check',
                 style: TextStyle(
-                  color: Colors.white,
+                  color: Color.fromARGB(255, 0, 0, 0),
                   fontSize: 24,
                 ),
               ),
@@ -32,8 +32,43 @@ class LoginPage extends StatelessWidget {
               // welcome back
 
               // username textfield
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 25.0),
+                child: TextField(
+                  decoration: InputDecoration(
+                    enabledBorder: OutlineInputBorder(
+                      borderSide:
+                          BorderSide(color: Color.fromARGB(255, 255, 255, 255)),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide:
+                          BorderSide(color: Color.fromARGB(255, 255, 255, 255)),
+                    ),
+                    fillColor: Color.fromARGB(255, 255, 255, 255),
+                    filled: true,
+                  ),
+                ),
+              ),
+              SizedBox(height: 15),
 
               // password textfield
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 25.0),
+                child: TextField(
+                  decoration: InputDecoration(
+                    enabledBorder: OutlineInputBorder(
+                      borderSide:
+                          BorderSide(color: Color.fromARGB(255, 255, 255, 255)),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide:
+                          BorderSide(color: Color.fromARGB(255, 255, 255, 255)),
+                    ),
+                    fillColor: Color.fromARGB(255, 255, 255, 255),
+                    filled: true,
+                  ),
+                ),
+              ),
 
               // forgot password?
 
