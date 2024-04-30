@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "796758068481",
+    "project_id": "authchiccheck",
+    "storage_bucket": "authchiccheck.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:796758068481:android:4ff7fa0878f7a1763c1f00",
+        "android_client_info": {
+          "package_name": "com.example.frontend"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCubW3P1VWC7tc89qeQmBhepqMWQkBCdEw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
