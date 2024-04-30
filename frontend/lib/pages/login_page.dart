@@ -1,76 +1,72 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/components/my_textfield.dart';
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+  LoginPage({super.key});
+
+  final usernameController = TextEditingController();
+  final passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       backgroundColor: Color.fromARGB(255, 243, 243, 243),
       body: SafeArea(
         child: Center(
           child: Column(
             children: [
-              SizedBox(height: 50),
+              const SizedBox(height: 50),
               // logo
-              Icon(
+              const Icon(
                 Icons.lock,
                 size: 100,
               ),
 
-              SizedBox(height: 50),
+              const SizedBox(height: 50),
 
-              Text(
+              const Text(
                 'Chic Check',
                 style: TextStyle(
                   color: Color.fromARGB(255, 0, 0, 0),
                   fontSize: 24,
                 ),
               ),
-              SizedBox(height: 25),
-
-              // welcome back
+              const SizedBox(height: 25),
 
               // username textfield
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 25.0),
-                child: TextField(
-                  decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Color.fromARGB(255, 255, 255, 255)),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Color.fromARGB(255, 255, 255, 255)),
-                    ),
-                    fillColor: Color.fromARGB(255, 255, 255, 255),
-                    filled: true,
-                  ),
-                ),
+              MyTextField(
+                controller: usernameController,
+                hintText: 'Username',
+                obscureText: false,
               ),
-              SizedBox(height: 15),
+
+              const SizedBox(height: 15),
 
               // password textfield
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 25.0),
-                child: TextField(
-                  decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Color.fromARGB(255, 255, 255, 255)),
+              MyTextField(
+                controller: passwordController,
+                hintText: 'Password',
+                obscureText: true,
+              ),
+
+              const SizedBox(height: 10),
+
+              // forgot password?
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 35.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text(
+                      'Forgot Password?',
+                      style:
+                          TextStyle(color: Color.fromARGB(255, 148, 148, 148)),
                     ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Color.fromARGB(255, 255, 255, 255)),
-                    ),
-                    fillColor: Color.fromARGB(255, 255, 255, 255),
-                    filled: true,
-                  ),
+                  ],
                 ),
               ),
 
-              // forgot password?
+              const SizedBox(height: 40),
 
               // sign in button
 
