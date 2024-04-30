@@ -120,12 +120,12 @@ class LoginPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   //google button
-                  SquareTile(imagePath: 'lib/image/google.png'),
+                  SquareTile(imagePath: 'assets/image/google.png'),
 
                   SizedBox(width: 10),
 
                   //apple button
-                  SquareTile(imagePath: 'lib/image/apple.png'),
+                  SquareTile(imagePath: 'assets/image/apple.png'),
                 ],
               ),
 
