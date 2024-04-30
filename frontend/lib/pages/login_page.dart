@@ -5,8 +5,11 @@ import 'package:frontend/components/my_signinButton.dart';
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
 
+  //text editing controllers
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
+  //sign in user in method
+  void signInUser() {}
 
   @override
   Widget build(BuildContext context) {
@@ -70,11 +73,52 @@ class LoginPage extends StatelessWidget {
               const SizedBox(height: 200),
 
               // sign in button
-              MySignInButton(),
+              MySignInButton(
+                onTap: signInUser,
+              ),
+
+              const SizedBox(
+                height: 25,
+              ),
 
               // or continue with
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 45.0),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Divider(
+                        thickness: 1,
+                        color: Color.fromARGB(255, 148, 148, 148),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 10.0),
+                      child: Text(
+                        'Or continue with',
+                        style: TextStyle(
+                            color: Color.fromARGB(255, 148, 148, 148)),
+                      ),
+                    ),
+                    Expanded(
+                      child: Divider(
+                        thickness: 1,
+                        color: Color.fromARGB(255, 148, 148, 148),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
 
-              // google sign in button
+              // google + apple sign in button
+              Row(
+                children: [
+                  Image.asset(
+                    'lib/images/google.png',
+                    height: 72,
+                  )
+                ],
+              )
 
               // not a member ? register now
             ],
