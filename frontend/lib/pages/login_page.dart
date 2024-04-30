@@ -12,142 +12,162 @@ class LoginPage extends StatelessWidget {
   //sign in user in method
   void signInUser() {}
 
+  // void showErrorMessage(String message) {
+  //   showDialog(
+  //     context: ,
+  //     builder: (context){
+  //       return AlertDialog(
+  //         backgroundColor: Color(0xFFFF6678),
+  //         title: Center(child: Text('Incorrect Email',
+  //         style: TextStyle(color: Colors.white)
+  //       ),
+  //       ),
+  //       );
+
+  //     },
+  //   );
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 243, 243, 243),
       body: SafeArea(
         child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const SizedBox(height: 50),
-              // logo
-              const Icon(
-                Icons.lock,
-                size: 100,
-              ),
-
-              const SizedBox(height: 50),
-
-              const Text(
-                'Chic Check',
-                style: TextStyle(
-                  color: Color.fromARGB(255, 0, 0, 0),
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const SizedBox(height: 50),
+                // logo
+                const Icon(
+                  Icons.lock,
+                  size: 100,
                 ),
-              ),
-              const SizedBox(height: 25),
 
-              // username textfield
-              MyTextField(
-                controller: emailController,
-                hintText: 'email',
-                obscureText: false,
-              ),
+                const SizedBox(height: 50),
 
-              const SizedBox(height: 15),
-
-              // password textfield
-              MyTextField(
-                controller: passwordController,
-                hintText: 'Password',
-                obscureText: true,
-              ),
-
-              const SizedBox(height: 10),
-
-              // forgot password?
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 35.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Text(
-                      'Forgot Password?',
-                      style:
-                          TextStyle(color: Color.fromARGB(255, 131, 131, 131)),
-                    ),
-                  ],
+                const Text(
+                  'Chic Check',
+                  style: TextStyle(
+                    color: Color.fromARGB(255, 0, 0, 0),
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),
+                const SizedBox(height: 25),
 
-              const SizedBox(height: 200),
+                // username textfield
+                MyTextField(
+                  controller: emailController,
+                  hintText: 'email',
+                  obscureText: false,
+                ),
 
-              // sign in button
-              MySignInButton(
-                onTap: signInUser,
-              ),
+                const SizedBox(height: 15),
 
-              const SizedBox(
-                height: 25,
-              ),
+                // password textfield
+                MyTextField(
+                  controller: passwordController,
+                  hintText: 'Password',
+                  obscureText: true,
+                ),
 
-              // or continue with
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 45.0),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Divider(
-                        thickness: 1,
-                        color: Color.fromARGB(255, 131, 131, 131),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 10.0),
-                      child: Text(
-                        'Or continue with',
+                const SizedBox(height: 10),
+
+                // forgot password?
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 35.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text(
+                        'Forgot Password?',
                         style: TextStyle(
                             color: Color.fromARGB(255, 131, 131, 131)),
                       ),
-                    ),
-                    Expanded(
-                      child: Divider(
-                        thickness: 1,
-                        color: Color.fromARGB(255, 131, 131, 131),
+                    ],
+                  ),
+                ),
+
+                const SizedBox(height: 200),
+
+                // sign in button
+                MySignInButton(
+                  onTap: signInUser,
+                ),
+
+                const SizedBox(
+                  height: 25,
+                ),
+
+                // or continue with
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 45.0),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Divider(
+                          thickness: 1,
+                          color: Color.fromARGB(255, 131, 131, 131),
+                        ),
                       ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 10.0),
+                        child: Text(
+                          'Or continue with',
+                          style: TextStyle(
+                              color: Color.fromARGB(255, 131, 131, 131)),
+                        ),
+                      ),
+                      Expanded(
+                        child: Divider(
+                          thickness: 1,
+                          color: Color.fromARGB(255, 131, 131, 131),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+
+                const SizedBox(height: 25),
+
+                // google + apple sign in button
+                // const Row(
+                //   mainAxisAlignment: MainAxisAlignment.center,
+                //   children: [
+                //     //google button
+                //     SquareTile(imagePath: 'assets/image/google.png'),
+
+                //     SizedBox(width: 10),
+
+                //     //apple button
+                //     SquareTile(imagePath: 'assets/image/apple.png'),
+                //   ],
+                // ),
+
+                const SizedBox(height: 20),
+
+                // not a member ? register now
+                const Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Don\'t have an account?',
+                      style:
+                          TextStyle(color: Color.fromARGB(255, 131, 131, 131)),
+                    ),
+                    SizedBox(width: 4),
+                    Text(
+                      'Register Now',
+                      style: TextStyle(
+                          color: Color(0xFFFF6678),
+                          fontWeight: FontWeight.bold),
                     ),
                   ],
-                ),
-              ),
-
-              const SizedBox(height: 25),
-
-              // google + apple sign in button
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  //google button
-                  SquareTile(imagePath: 'assets/image/google.png'),
-
-                  SizedBox(width: 10),
-
-                  //apple button
-                  SquareTile(imagePath: 'assets/image/apple.png'),
-                ],
-              ),
-
-              const SizedBox(height: 20),
-
-              // not a member ? register now
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Don\'t have an account?',
-                    style: TextStyle(color: Color.fromARGB(255, 131, 131, 131)),
-                  ),
-                  SizedBox(width: 4),
-                  Text(
-                    'Register Now',
-                    style: TextStyle(
-                        color: Color(0xFFFF6678), fontWeight: FontWeight.bold),
-                  ),
-                ],
-              )
-            ],
+                )
+              ],
+            ),
           ),
         ),
       ),
