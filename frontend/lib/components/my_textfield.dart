@@ -30,7 +30,7 @@ class MyTextField extends StatelessWidget {
             filled: true,
             hintText: hintText,
             hintStyle:
-                const TextStyle(color: Color.fromARGB(255, 196, 196, 196))),
+                const TextStyle(color: Color.fromARGB(255, 148, 148, 148))),
       ),
     );
   }
