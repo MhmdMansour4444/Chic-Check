@@ -15,7 +15,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 243, 243, 243),
+      backgroundColor: const Color.fromARGB(255, 243, 243, 243),
       body: SafeArea(
         child: Center(
           child: Column(
@@ -65,7 +65,7 @@ class LoginPage extends StatelessWidget {
                     Text(
                       'Forgot Password?',
                       style:
-                          TextStyle(color: Color.fromARGB(255, 148, 148, 148)),
+                          TextStyle(color: Color.fromARGB(255, 131, 131, 131)),
                     ),
                   ],
                 ),
@@ -90,7 +90,7 @@ class LoginPage extends StatelessWidget {
                     Expanded(
                       child: Divider(
                         thickness: 1,
-                        color: Color.fromARGB(255, 148, 148, 148),
+                        color: Color.fromARGB(255, 131, 131, 131),
                       ),
                     ),
                     Padding(
@@ -98,13 +98,13 @@ class LoginPage extends StatelessWidget {
                       child: Text(
                         'Or continue with',
                         style: TextStyle(
-                            color: Color.fromARGB(255, 148, 148, 148)),
+                            color: Color.fromARGB(255, 131, 131, 131)),
                       ),
                     ),
                     Expanded(
                       child: Divider(
                         thickness: 1,
-                        color: Color.fromARGB(255, 148, 148, 148),
+                        color: Color.fromARGB(255, 131, 131, 131),
                       ),
                     ),
                   ],
@@ -125,9 +125,26 @@ class LoginPage extends StatelessWidget {
                   //apple button
                   SquareTile(imagePath: 'lib/image/apple.png'),
                 ],
-              )
+              ),
+
+              const SizedBox(height: 30),
 
               // not a member ? register now
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Don\'t have an account?',
+                    style: TextStyle(color: Color.fromARGB(255, 131, 131, 131)),
+                  ),
+                  SizedBox(width: 4),
+                  Text(
+                    'Register Now',
+                    style: TextStyle(
+                        color: Color(0xFFFF6678), fontWeight: FontWeight.bold),
+                  ),
+                ],
+              )
             ],
           ),
         ),
