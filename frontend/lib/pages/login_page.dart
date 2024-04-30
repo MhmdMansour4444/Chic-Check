@@ -7,7 +7,7 @@ class LoginPage extends StatelessWidget {
   LoginPage({super.key});
 
   //text editing controllers
-  final usernameController = TextEditingController();
+  final emailController = TextEditingController();
   final passwordController = TextEditingController();
   //sign in user in method
   void signInUser() {}
@@ -42,8 +42,8 @@ class LoginPage extends StatelessWidget {
 
               // username textfield
               MyTextField(
-                controller: usernameController,
-                hintText: 'Username',
+                controller: emailController,
+                hintText: 'email',
                 obscureText: false,
               ),
 
