@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/components/my_textfield.dart';
 import 'package:frontend/components/my_signinButton.dart';
+import 'package:frontend/components/square_tile.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
@@ -110,13 +111,19 @@ class LoginPage extends StatelessWidget {
                 ),
               ),
 
+              const SizedBox(height: 40),
+
               // google + apple sign in button
-              Row(
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset(
-                    'lib/images/google.png',
-                    height: 72,
-                  )
+                  //google button
+                  SquareTile(imagePath: 'lib/image/google.png'),
+
+                  SizedBox(width: 10),
+
+                  //apple button
+                  SquareTile(imagePath: 'lib/image/apple.png'),
                 ],
               )
 
