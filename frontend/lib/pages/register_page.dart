@@ -1,38 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/components/my_textfield.dart';
-import 'package:frontend/components/my_signinButton.dart';
+import 'package:frontend/components/my_signUpButton.dart';
 import 'package:frontend/components/square_tile.dart';
 
-class LoginPage extends StatefulWidget {
-  LoginPage({super.key});
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({super.key});
 
   @override
-  _LoginPageState createState() => _LoginPageState();
+  _RegisterPageState createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
-  //text editing controllers
+class _RegisterPageState extends State<RegisterPage> {
+  final usernameController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
-  //sign in user in method
-  void signInUser() {}
-
-  // void showErrorMessage(String message) {
-  //   showDialog(
-  //     context: ,
-  //     builder: (context){
-  //       return AlertDialog(
-  //         backgroundColor: Color(0xFFFF6678),
-  //         title: Center(child: Text('Incorrect Email',
-  //         style: TextStyle(color: Colors.white)
-  //       ),
-  //       ),
-  //       );
-
-  //     },
-  //   );
-  // }
+  void registerUser() {
+    // Implement your registration logic here
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,14 +30,11 @@ class _LoginPageState extends State<LoginPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const SizedBox(height: 50),
-                // logo
                 const Icon(
                   Icons.lock,
                   size: 100,
                 ),
-
                 const SizedBox(height: 50),
-
                 const Text(
                   'Chic Check',
                   style: TextStyle(
@@ -62,52 +44,30 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
                 const SizedBox(height: 25),
-
-                // username textfield
                 MyTextField(
-                  controller: emailController,
-                  hintText: 'email',
+                  controller: usernameController,
+                  hintText: 'Username',
                   obscureText: false,
                 ),
-
                 const SizedBox(height: 15),
-
-                // password textfield
+                MyTextField(
+                  controller: emailController,
+                  hintText: 'Email',
+                  obscureText: false,
+                ),
+                const SizedBox(height: 15),
                 MyTextField(
                   controller: passwordController,
                   hintText: 'Password',
                   obscureText: true,
                 ),
-
-                const SizedBox(height: 10),
-
-                // forgot password?
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 35.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text(
-                        'Forgot Password?',
-                        style: TextStyle(
-                            color: Color.fromARGB(255, 131, 131, 131)),
-                      ),
-                    ],
-                  ),
-                ),
-
                 const SizedBox(height: 200),
-
-                // sign in button
-                MySignInButton(
-                  onTap: signInUser,
+                MySignUpButton(
+                  onTap: registerUser,
                 ),
-
                 const SizedBox(
                   height: 25,
                 ),
-
-                // or continue with
                 const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 45.0),
                   child: Row(
@@ -121,7 +81,7 @@ class _LoginPageState extends State<LoginPage> {
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 10.0),
                         child: Text(
-                          'Or continue with',
+                          'Or Sign in with',
                           style: TextStyle(
                               color: Color.fromARGB(255, 131, 131, 131)),
                         ),
@@ -135,38 +95,23 @@ class _LoginPageState extends State<LoginPage> {
                     ],
                   ),
                 ),
-
                 const SizedBox(height: 25),
-
-                // google + apple sign in button
-                // const Row(
-                //   mainAxisAlignment: MainAxisAlignment.center,
-                //   children: [
-                //     //google button
-                //     SquareTile(imagePath: 'assets/image/google.png'),
-
-                //     SizedBox(width: 10),
-
-                //     //apple button
-                //     SquareTile(imagePath: 'assets/image/apple.png'),
-                //   ],
-                // ),
-
-                const SizedBox(height: 20),
-
-                // not a member ? register now
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Text(
-                      'Don\'t have an account?',
+                      'Already have an account?',
                       style:
                           TextStyle(color: Color.fromARGB(255, 131, 131, 131)),
                     ),
-                    SizedBox(width: 4),
                     GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          Navigator.of(context).pop();
+                        });
+                      },
                       child: const Text(
-                        'Register Now',
+                        ' Sign in',
                         style: TextStyle(
                             color: Color(0xFFFF6678),
                             fontWeight: FontWeight.bold),
