@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:frontend/components/my_textfield.dart';
 import 'package:frontend/components/my_signinButton.dart';
 import 'package:frontend/components/square_tile.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class LoginPage extends StatefulWidget {
   LoginPage({super.key});
@@ -16,7 +18,58 @@ class _LoginPageState extends State<LoginPage> {
   final passwordController = TextEditingController();
 
   //sign in user in method
-  void signInUser() {}
+  void signInUser(BuildContext context) async {
+    try {
+      final response = await http.post(
+        Uri.parse('api'),
+        body: {
+          'email': emailController.text.trim(),
+          'password': passwordController.text.trim(),
+        },
+      );
+
+      if (response.statusCode == 200) {
+        Map<String, dynamic> data = json.decode(response.body);
+      } else {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text('Login Failed'),
+              content: Text('Invalid email or password. Please try again.'),
+              actions: <Widget>[
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text('OK'),
+                ),
+              ],
+            );
+          },
+        );
+      }
+    } catch (e) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Error'),
+            content: Text(
+                'An error occurred while trying to log in. Please try again later.'),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text('OK'),
+              ),
+            ],
+          );
+        },
+      );
+    }
+  }
 
   // void showErrorMessage(String message) {
   //   showDialog(
@@ -100,7 +153,7 @@ class _LoginPageState extends State<LoginPage> {
 
                 // sign in button
                 MySignInButton(
-                  onTap: signInUser,
+                  onTap: () => signInUser(context),
                 ),
 
                 const SizedBox(
