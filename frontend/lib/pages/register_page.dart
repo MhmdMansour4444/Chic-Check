@@ -4,7 +4,7 @@ import 'package:frontend/components/my_signUpButton.dart';
 import 'package:frontend/components/square_tile.dart';
 
 class RegisterPage extends StatefulWidget {
-  const RegisterPage({super.key});
+  RegisterPage({super.key});
 
   @override
   _RegisterPageState createState() => _RegisterPageState();
@@ -81,7 +81,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 10.0),
                         child: Text(
-                          'Or Sign in with',
+                          'Or Continue with',
                           style: TextStyle(
                               color: Color.fromARGB(255, 131, 131, 131)),
                         ),
@@ -104,17 +104,17 @@ class _RegisterPageState extends State<RegisterPage> {
                       style:
                           TextStyle(color: Color.fromARGB(255, 131, 131, 131)),
                     ),
+                    SizedBox(width: 4),
                     GestureDetector(
                       onTap: () {
-                        setState(() {
-                          Navigator.of(context).pop();
-                        });
+                        Navigator.pushNamed(context, '/login');
                       },
                       child: const Text(
-                        ' Sign in',
+                        'Register Now',
                         style: TextStyle(
-                            color: Color(0xFFFF6678),
-                            fontWeight: FontWeight.bold),
+                          color: Color(0xFFFF6678),
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ],

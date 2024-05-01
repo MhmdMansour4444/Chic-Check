@@ -165,11 +165,15 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     SizedBox(width: 4),
                     GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(context, '/register');
+                      },
                       child: const Text(
-                        'Register Now',
+                        'SignUp',
                         style: TextStyle(
-                            color: Color(0xFFFF6678),
-                            fontWeight: FontWeight.bold),
+                          color: Color(0xFFFF6678),
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ],
