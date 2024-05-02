@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   void onTap() {}
 
   @override
@@ -16,7 +21,7 @@ class HomePage extends StatelessWidget {
           Container(
             padding: EdgeInsets.all(40),
             decoration: BoxDecoration(
-              color: Colors.grey[200],
+              color: Color.fromARGB(108, 255, 102, 120),
               borderRadius: BorderRadius.circular(10),
             ),
             child: Column(
@@ -28,8 +33,7 @@ class HomePage extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(
-                    height: 20), // Adjust the size of the SizedBox as needed
+                SizedBox(height: 20),
                 Text(
                   'We are here to assist you!',
                   style: TextStyle(
