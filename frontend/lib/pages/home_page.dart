@@ -23,7 +23,7 @@ class _HomePageState extends State<HomePage> {
             Container(
               padding: EdgeInsets.all(40),
               decoration: BoxDecoration(
-                color: Color.fromARGB(108, 255, 102, 120),
+                color: Color.fromARGB(83, 255, 102, 120),
                 borderRadius: BorderRadius.circular(10),
               ),
               child: const Column(
@@ -100,12 +100,29 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       bottomNavigationBar: GNav(
+        activeColor: Color(0xFFFF6678),
+        tabBackgroundColor: Color.fromARGB(83, 255, 102, 120),
         tabs: [
-          GButton(icon: Icons.home),
-          GButton(icon: Icons.checkroom_rounded),
-          GButton(icon: Icons.camera_outlined),
-          GButton(icon: Icons.message_rounded),
-          GButton(icon: Icons.bookmarks_outlined),
+          GButton(
+            icon: Icons.home,
+            text: 'Home',
+          ),
+          GButton(
+            icon: Icons.checkroom_rounded,
+            text: 'Closet',
+          ),
+          GButton(
+            icon: Icons.camera_outlined,
+            text: 'Camera',
+          ),
+          GButton(
+            icon: Icons.message_rounded,
+            text: 'Forums',
+          ),
+          GButton(
+            icon: Icons.bookmarks_outlined,
+            text: 'Saved',
+          ),
         ],
       ),
     );
