@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:frontend/components/my_textfield.dart';
 import 'package:frontend/components/my_signinButton.dart';
@@ -20,8 +22,9 @@ class _LoginPageState extends State<LoginPage> {
   //sign in user in method
   void signInUser(BuildContext context) async {
     try {
+      log('data: signin in');
       final response = await http.post(
-        Uri.parse('api'),
+        Uri.parse('http://localhost:8000/api/login'),
         body: {
           'email': emailController.text.trim(),
           'password': passwordController.text.trim(),
@@ -30,6 +33,7 @@ class _LoginPageState extends State<LoginPage> {
 
       if (response.statusCode == 200) {
         Map<String, dynamic> data = json.decode(response.body);
+        log('data: signed in');
       } else {
         showDialog(
           context: context,
@@ -119,7 +123,7 @@ class _LoginPageState extends State<LoginPage> {
                 // username textfield
                 MyTextField(
                   controller: emailController,
-                  hintText: 'email',
+                  hintText: 'Email',
                   obscureText: false,
                 ),
 

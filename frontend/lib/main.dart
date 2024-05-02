@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 import 'pages/login_page.dart';
 import 'pages/register_page.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'pages/random_page.dart';
 
-void main() => runApp(MyApp());
+void main() async {
+  runApp(MyApp());
+}
+
 final ThemeData themeData = ThemeData(
   textTheme: GoogleFonts.outfitTextTheme(),
 );
@@ -16,10 +20,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: themeData,
-      initialRoute: '/login',
+      initialRoute: '/homepage',
       routes: {
         '/login': (context) => LoginPage(),
         '/register': (context) => RegisterPage(),
+        '/homepage': (context) => RandomHomePage(),
       },
     );
   }
