@@ -14,17 +14,30 @@ class HomePage extends StatelessWidget {
         children: [
           SizedBox(height: 30),
           Container(
-            padding: EdgeInsets.all(20),
+            padding: EdgeInsets.all(40),
             decoration: BoxDecoration(
               color: Colors.grey[200],
               borderRadius: BorderRadius.circular(10),
             ),
-            child: Text(
-              'Need help with your outfit?',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
+            child: Column(
+              children: [
+                Text(
+                  'Need help with your outfit?',
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(
+                    height: 20), // Adjust the size of the SizedBox as needed
+                Text(
+                  'We are here to assist you!',
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.normal,
+                  ),
+                ),
+              ],
             ),
           ),
           SizedBox(height: 20),
