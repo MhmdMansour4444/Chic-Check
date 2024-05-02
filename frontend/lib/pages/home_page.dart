@@ -99,31 +99,36 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      bottomNavigationBar: GNav(
-        activeColor: Color(0xFFFF6678),
-        tabBackgroundColor: Color.fromARGB(83, 255, 102, 120),
-        tabs: [
-          GButton(
-            icon: Icons.home,
-            text: 'Home',
-          ),
-          GButton(
-            icon: Icons.checkroom_rounded,
-            text: 'Closet',
-          ),
-          GButton(
-            icon: Icons.camera_outlined,
-            text: 'Camera',
-          ),
-          GButton(
-            icon: Icons.message_rounded,
-            text: 'Forums',
-          ),
-          GButton(
-            icon: Icons.bookmarks_outlined,
-            text: 'Saved',
-          ),
-        ],
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 20.0),
+        child: GNav(
+          activeColor: Color(0xFFFF6678),
+          tabBackgroundColor: Color.fromARGB(83, 255, 102, 120),
+          gap: 5,
+          padding: EdgeInsets.all(14),
+          tabs: [
+            GButton(
+              icon: Icons.home,
+              text: 'Home',
+            ),
+            GButton(
+              icon: Icons.checkroom_rounded,
+              text: 'Closet',
+            ),
+            GButton(
+              icon: Icons.camera_outlined,
+              text: 'Camera',
+            ),
+            GButton(
+              icon: Icons.message_rounded,
+              text: 'Forums',
+            ),
+            GButton(
+              icon: Icons.bookmarks_outlined,
+              text: 'Saved',
+            ),
+          ],
+        ),
       ),
     );
   }
