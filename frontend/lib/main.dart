@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'pages/login_page.dart';
 import 'pages/register_page.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'pages/random_page.dart';
+import 'pages/home_page.dart';
 
 void main() async {
   runApp(MyApp());
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/login': (context) => LoginPage(),
         '/register': (context) => RegisterPage(),
-        '/homepage': (context) => RandomHomePage(),
+        '/homepage': (context) => HomePage(),
       },
     );
   }
