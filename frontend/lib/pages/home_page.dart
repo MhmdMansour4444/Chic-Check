@@ -105,6 +105,9 @@ class _HomePageState extends State<HomePage> {
           activeColor: Color(0xFFFF6678),
           tabBackgroundColor: Color.fromARGB(83, 255, 102, 120),
           gap: 5,
+          onTabChange: (index) {
+            print(index);
+          },
           padding: EdgeInsets.all(14),
           tabs: [
             GButton(
