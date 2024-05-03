@@ -47,6 +47,9 @@ class _RegisterPageState extends State<RegisterPage> {
       );
       if (response.statusCode == 200) {
         Map<String, dynamic> data = json.decode(response.body);
+        usernameController.clear();
+        emailController.clear();
+        passwordController.clear();
       }
     } catch (e) {
       showDialog(

@@ -52,6 +52,8 @@ class _LoginPageState extends State<LoginPage> {
 
       if (response.statusCode == 200) {
         Map<String, dynamic> data = json.decode(response.body);
+        emailController.clear();
+        passwordController.clear();
       } else {
         showDialog(
           context: context,
