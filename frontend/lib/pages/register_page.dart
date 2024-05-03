@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:frontend/components/my_textfield.dart';
 import 'package:frontend/components/my_signUpButton.dart';
 import 'package:frontend/components/square_tile.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class RegisterPage extends StatefulWidget {
   RegisterPage({super.key});
@@ -15,8 +17,56 @@ class _RegisterPageState extends State<RegisterPage> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
-  void registerUser() {
-    // Implement your registration logic here
+  void registerUser(BuildContext context) async {
+    try {
+      final uri = Uri.parse('http://192.168.1.6:8000/api/register');
+      final response = await http.post(
+        Uri.parse('http://192.168.1.6:8000/api/register'),
+        body: {
+          'username': usernameController.text.trim(),
+          'email': emailController.text.trim(),
+          'password': passwordController.text.trim(),
+        },
+      );
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Registered'),
+            content: Text(response.statusCode.toString()),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text('OK'),
+              ),
+            ],
+          );
+        },
+      );
+      if (response.statusCode == 200) {
+        Map<String, dynamic> data = json.decode(response.body);
+      }
+    } catch (e) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Error'),
+            content: Text('Error has occured, please try again later.'),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text('OK'),
+              ),
+            ],
+          );
+        },
+      );
+    }
   }
 
   @override
@@ -63,7 +113,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
                 const SizedBox(height: 130),
                 MySignUpButton(
-                  onTap: registerUser,
+                  onTap: () => registerUser(context),
                 ),
                 const SizedBox(
                   height: 25,
