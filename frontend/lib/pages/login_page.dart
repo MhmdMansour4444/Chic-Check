@@ -23,6 +23,8 @@ class _LoginPageState extends State<LoginPage> {
   void signInUser(BuildContext context) async {
     try {
       log('data: signin in');
+      final uri = Uri.parse('http://192.168.1.6:8000/api/login');
+      log(uri.toString());
       final response = await http.post(
         Uri.parse('http://localhost:8000/api/login'),
         body: {
