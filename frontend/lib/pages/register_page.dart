@@ -61,7 +61,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   hintText: 'Password',
                   obscureText: true,
                 ),
-                const SizedBox(height: 200),
+                const SizedBox(height: 130),
                 MySignUpButton(
                   onTap: registerUser,
                 ),
@@ -95,7 +95,23 @@ class _RegisterPageState extends State<RegisterPage> {
                     ],
                   ),
                 ),
+
                 const SizedBox(height: 25),
+
+                // google + apple sign in button
+                // const Row(
+                //   mainAxisAlignment: MainAxisAlignment.center,
+                //   children: [
+                //     //google button
+                //     SquareTile(imagePath: 'assets/image/google.png'),
+
+                //     SizedBox(width: 10),
+
+                //     //apple button
+                //     SquareTile(imagePath: 'assets/image/apple.png'),
+                //   ],
+                // ),
+                const SizedBox(height: 33),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

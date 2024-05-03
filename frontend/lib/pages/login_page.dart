@@ -26,16 +26,32 @@ class _LoginPageState extends State<LoginPage> {
       final uri = Uri.parse('http://192.168.1.6:8000/api/login');
       log(uri.toString());
       final response = await http.post(
-        Uri.parse('http://localhost:8000/api/login'),
+        Uri.parse('http://192.168.1.6:8000/api/login'),
         body: {
           'email': emailController.text.trim(),
           'password': passwordController.text.trim(),
         },
       );
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Signed in'),
+            content: Text(response.statusCode.toString()),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text('OK'),
+              ),
+            ],
+          );
+        },
+      );
 
       if (response.statusCode == 200) {
         Map<String, dynamic> data = json.decode(response.body);
-        log('data: signed in');
       } else {
         showDialog(
           context: context,
@@ -61,8 +77,7 @@ class _LoginPageState extends State<LoginPage> {
         builder: (BuildContext context) {
           return AlertDialog(
             title: Text('Error'),
-            content: Text(
-                'An error occurred while trying to log in. Please try again later.'),
+            content: Text(e.toString()),
             actions: <Widget>[
               TextButton(
                 onPressed: () {
@@ -180,7 +195,7 @@ class _LoginPageState extends State<LoginPage> {
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 10.0),
                         child: Text(
-                          'Or continue with',
+                          'Or Continue with',
                           style: TextStyle(
                               color: Color.fromARGB(255, 131, 131, 131)),
                         ),
@@ -211,7 +226,7 @@ class _LoginPageState extends State<LoginPage> {
                 //   ],
                 // ),
 
-                const SizedBox(height: 20),
+                const SizedBox(height: 25),
 
                 // not a member ? register now
                 Row(
