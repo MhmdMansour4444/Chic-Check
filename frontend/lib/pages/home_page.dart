@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:frontend/pages/home_page.dart';
 import 'package:frontend/pages/closet_page.dart';
 import 'package:frontend/pages/camera_page.dart';
-import 'package:frontend/pages/saved_page.dart';
 import 'package:frontend/pages/forums_page.dart';
+import 'package:frontend/components/my_navbar.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -123,38 +122,9 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 20.0),
-        child: GNav(
-          selectedIndex: _selectedIndex,
-          activeColor: Color(0xFFFF6678),
-          tabBackgroundColor: Color.fromARGB(83, 255, 102, 120),
-          gap: 5,
-          onTabChange: _navigateBottomBar,
-          padding: EdgeInsets.all(14),
-          tabs: [
-            GButton(
-              icon: Icons.home,
-              text: 'Home',
-            ),
-            GButton(
-              icon: Icons.checkroom_rounded,
-              text: 'Closet',
-            ),
-            GButton(
-              icon: Icons.camera_outlined,
-              text: 'Camera',
-            ),
-            GButton(
-              icon: Icons.message_rounded,
-              text: 'Forums',
-            ),
-            GButton(
-              icon: Icons.bookmarks_outlined,
-              text: 'Saved',
-            ),
-          ],
-        ),
+      bottomNavigationBar: MyNavBar(
+        selectedIndex: _selectedIndex,
+        onTabChange: _navigateBottomBar,
       ),
     );
   }
