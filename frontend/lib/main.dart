@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/pages/closet_page.dart';
 import 'pages/login_page.dart';
 import 'pages/register_page.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -20,11 +21,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: themeData,
-      initialRoute: '/homepage',
+      initialRoute: '/closet',
       routes: {
         '/login': (context) => LoginPage(),
         '/register': (context) => RegisterPage(),
         '/homepage': (context) => HomePage(),
+        '/closet': (context) => ClosetPage(),
       },
     );
   }
