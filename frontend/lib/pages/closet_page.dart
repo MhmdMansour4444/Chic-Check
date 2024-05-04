@@ -8,10 +8,17 @@ class ClosetPage extends StatefulWidget {
 
 class _ClosetPageState extends State<ClosetPage> {
   int _selectedIndex = 0;
+  int _selectedTitleIndex = 0;
 
   void _navigateBottomBar(int index) {
     setState(() {
       _selectedIndex = index;
+    });
+  }
+
+  void _onTitlePressed(int index) {
+    setState(() {
+      _selectedTitleIndex = index;
     });
   }
 
@@ -30,24 +37,50 @@ class _ClosetPageState extends State<ClosetPage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  OutlinedButton(
-                    onPressed: () {},
-                    child: const Text(
-                      'Title 1',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
+                  InkWell(
+                    onTap: () => _onTitlePressed(0),
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(vertical: 4.0),
+                      decoration: BoxDecoration(
+                        border: Border(
+                          bottom: BorderSide(
+                            color: _selectedTitleIndex == 0
+                                ? Color(0xFFFF6678)
+                                : const Color.fromARGB(0, 255, 255, 255),
+                            width: 2.0,
+                          ),
+                        ),
+                      ),
+                      child: const Text(
+                        'Title 1',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ),
                   const SizedBox(width: 70),
-                  OutlinedButton(
-                    onPressed: () {},
-                    child: const Text(
-                      'Title 2',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
+                  InkWell(
+                    onTap: () => _onTitlePressed(1),
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(vertical: 4.0),
+                      decoration: BoxDecoration(
+                        border: Border(
+                          bottom: BorderSide(
+                            color: _selectedTitleIndex == 1
+                                ? Color(0xFFFF6678)
+                                : Colors.transparent,
+                            width: 2.0,
+                          ),
+                        ),
+                      ),
+                      child: const Text(
+                        'Title 2',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ),
@@ -55,11 +88,11 @@ class _ClosetPageState extends State<ClosetPage> {
               ),
             ),
           ),
-          const SizedBox(height: 25),
+          SizedBox(height: 20),
           Expanded(
             child: GridView.builder(
               itemCount: 5,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 3,
               ),
               itemBuilder: (context, index) {
@@ -83,6 +116,10 @@ class _ClosetPageState extends State<ClosetPage> {
     );
   }
 }
+
+
+
+
 
 // GridView.count(
       //   crossAxisCount: 3,
