@@ -26,7 +26,26 @@ class _ClosetPageState extends State<ClosetPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('The Closet'),
+        title: InkWell(
+          child: Container(
+            padding: const EdgeInsets.symmetric(vertical: 4.0),
+            decoration: const BoxDecoration(
+              border: Border(
+                bottom: BorderSide(
+                  color: Color(0xFFFF6678),
+                  width: 3.0,
+                ),
+              ),
+            ),
+            child: const Text(
+              'The Closet',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -45,7 +64,7 @@ class _ClosetPageState extends State<ClosetPage> {
                         border: Border(
                           bottom: BorderSide(
                             color: _selectedTitleIndex == 0
-                                ? Color(0xFFFF6678)
+                                ? const Color(0xFFFF6678)
                                 : const Color.fromARGB(0, 255, 255, 255),
                             width: 2.0,
                           ),
@@ -69,7 +88,7 @@ class _ClosetPageState extends State<ClosetPage> {
                         border: Border(
                           bottom: BorderSide(
                             color: _selectedTitleIndex == 1
-                                ? Color(0xFFFF6678)
+                                ? const Color(0xFFFF6678)
                                 : Colors.transparent,
                             width: 2.0,
                           ),
@@ -88,11 +107,11 @@ class _ClosetPageState extends State<ClosetPage> {
               ),
             ),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Expanded(
             child: GridView.builder(
               itemCount: 5,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 3,
               ),
               itemBuilder: (context, index) {

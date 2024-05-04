@@ -32,19 +32,37 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Welcome Mohammad!'),
-        // automaticallyImplyLeading: false,
+        title: InkWell(
+          child: Container(
+            padding: const EdgeInsets.symmetric(vertical: 4.0),
+            decoration: const BoxDecoration(
+              border: Border(
+                bottom: BorderSide(
+                  color: Color(0xFFFF6678),
+                  width: 3.0,
+                ),
+              ),
+            ),
+            child: const Text(
+              'Welcome!!',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
         child: Center(
           child: Column(
             children: [
-              SizedBox(height: 30),
+              const SizedBox(height: 30),
               Container(
-                padding: EdgeInsets.all(40),
+                padding: const EdgeInsets.all(40),
                 decoration: BoxDecoration(
-                  color: Color.fromARGB(83, 255, 102, 120),
+                  color: const Color.fromARGB(83, 255, 102, 120),
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: const Column(
@@ -67,12 +85,12 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               const Text(
                 'Use your camera for our fitcheck',
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               GestureDetector(
                 onTap: onTap,
                 child: Container(
@@ -92,13 +110,13 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
-              SizedBox(height: 30),
+              const SizedBox(height: 30),
               const Text(
                 'Or browse our community for the best outfit advices out there!',
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               GestureDetector(
                 onTap: onTap,
                 child: Container(
