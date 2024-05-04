@@ -9,15 +9,6 @@ class SavedPage extends StatefulWidget {
 }
 
 class _SavedPageState extends State<SavedPage> {
-  int _selectedIndex = 0;
-  int _selectedTitleIndex = 0;
-
-  void _navigateBottomBar(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

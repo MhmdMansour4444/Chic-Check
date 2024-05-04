@@ -7,14 +7,7 @@ class ClosetPage extends StatefulWidget {
 }
 
 class _ClosetPageState extends State<ClosetPage> {
-  int _selectedIndex = 0;
   int _selectedTitleIndex = 0;
-
-  void _navigateBottomBar(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
 
   void _onTitlePressed(int index) {
     setState(() {
@@ -26,6 +19,7 @@ class _ClosetPageState extends State<ClosetPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: InkWell(
           child: Container(
             padding: const EdgeInsets.symmetric(vertical: 4.0),
