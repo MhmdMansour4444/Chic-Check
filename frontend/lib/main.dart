@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/pages/closet_page.dart';
+import 'package:frontend/pages/saved_page.dart';
 import 'pages/login_page.dart';
 import 'pages/register_page.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
         '/register': (context) => RegisterPage(),
         '/homepage': (context) => HomePage(),
         '/closet': (context) => ClosetPage(),
+        '/saved': (context) => SavedPage(),
       },
     );
   }

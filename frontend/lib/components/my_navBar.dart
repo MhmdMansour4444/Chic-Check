@@ -5,7 +5,7 @@ class MyNavBar extends StatelessWidget {
   final int selectedIndex;
   final Function(int) onTabChange;
 
-  MyNavBar({required this.selectedIndex, required this.onTabChange});
+  const MyNavBar({required this.selectedIndex, required this.onTabChange});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,9 @@ class MyNavBar extends StatelessWidget {
         activeColor: Color(0xFFFF6678),
         tabBackgroundColor: Color.fromARGB(83, 255, 102, 120),
         gap: 5,
-        onTabChange: onTabChange,
+        onTabChange: (value) {
+          print(value);
+        },
         padding: EdgeInsets.all(14),
         tabs: [
           GButton(
