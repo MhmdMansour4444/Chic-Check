@@ -128,10 +128,6 @@ class _ClosetPageState extends State<ClosetPage> {
           ),
         ],
       ),
-      bottomNavigationBar: MyNavBar(
-        selectedIndex: _selectedIndex,
-        onTabChange: _navigateBottomBar,
-      ),
     );
   }
 }

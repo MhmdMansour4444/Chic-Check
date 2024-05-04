@@ -44,10 +44,6 @@ class _SavedPageState extends State<SavedPage> {
         ),
         centerTitle: true,
       ),
-      bottomNavigationBar: MyNavBar(
-        selectedIndex: _selectedIndex,
-        onTabChange: _navigateBottomBar,
-      ),
     );
   }
 }

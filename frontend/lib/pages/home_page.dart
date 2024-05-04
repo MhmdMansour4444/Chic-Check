@@ -141,10 +141,6 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
-      bottomNavigationBar: MyNavBar(
-        selectedIndex: _selectedIndex,
-        onTabChange: _navigateBottomBar,
-      ),
     );
   }
 }

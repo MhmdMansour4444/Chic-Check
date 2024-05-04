@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/components/my_navBar.dart';
 import 'package:frontend/pages/closet_page.dart';
 import 'package:frontend/pages/saved_page.dart';
 import 'pages/login_page.dart';
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/login': (context) => LoginPage(),
         '/register': (context) => RegisterPage(),
-        '/homepage': (context) => HomePage(),
+        '/homepage': (context) => MyNavBar(),
         '/closet': (context) => ClosetPage(),
         '/saved': (context) => SavedPage(),
       },
