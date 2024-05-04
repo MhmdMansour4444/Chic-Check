@@ -37,7 +37,7 @@ class _ClosetPageState extends State<ClosetPage> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(width: 70), // Add space between titles
+                  SizedBox(width: 70),
                   Text(
                     'Title 2',
                     style: TextStyle(
