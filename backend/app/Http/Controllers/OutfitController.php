@@ -29,7 +29,7 @@ class OutfitController extends Controller
         return response()->json(['message' => 'Outfit created successfully'], 201);
     }
 
-    public function index(Request $request)
+    public function read(Request $request)
     {
         $outfits = Outfit::with('user', 'clothes')->latest()->paginate(10);
 

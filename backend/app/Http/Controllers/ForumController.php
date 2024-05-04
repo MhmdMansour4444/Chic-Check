@@ -24,7 +24,7 @@ class ForumController extends Controller
         return response()->json(['message' => 'Forum created successfully'], 201);
     }
 
-    public function index(Request $request)
+    public function read(Request $request)
     {
         $forums = Forum::with('posts')->latest()->paginate(10);
 
