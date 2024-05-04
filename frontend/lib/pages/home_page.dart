@@ -34,6 +34,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text('Welcome Mohammad!'),
         centerTitle: true,
+        // automaticallyImplyLeading: false,
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0),

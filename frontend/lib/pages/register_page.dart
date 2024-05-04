@@ -32,8 +32,7 @@ class _RegisterPageState extends State<RegisterPage> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text('Registered'),
-            content: Text(response.statusCode.toString()),
+            content: Text('REGISTERED'),
             actions: <Widget>[
               TextButton(
                 onPressed: () {
@@ -44,13 +43,14 @@ class _RegisterPageState extends State<RegisterPage> {
             ],
           );
         },
-      );
-      if (response.statusCode == 200) {
-        Map<String, dynamic> data = json.decode(response.body);
-        usernameController.clear();
-        emailController.clear();
-        passwordController.clear();
-      }
+      ).then((_) {
+        if (response.statusCode == 200) {
+          usernameController.clear();
+          emailController.clear();
+          passwordController.clear();
+          Navigator.pushNamed(context, '/login');
+        }
+      });
     } catch (e) {
       showDialog(
         context: context,

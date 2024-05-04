@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:frontend/components/my_textfield.dart';
 import 'package:frontend/components/my_signinButton.dart';
 import 'package:frontend/components/square_tile.dart';
+import 'package:frontend/pages/home_page.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -32,28 +33,12 @@ class _LoginPageState extends State<LoginPage> {
           'password': passwordController.text.trim(),
         },
       );
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text('Signed in'),
-            content: Text(response.statusCode.toString()),
-            actions: <Widget>[
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: Text('OK'),
-              ),
-            ],
-          );
-        },
-      );
 
       if (response.statusCode == 200) {
         Map<String, dynamic> data = json.decode(response.body);
         emailController.clear();
         passwordController.clear();
+        Navigator.pushNamed(context, '/closet');
       } else {
         showDialog(
           context: context,
