@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/components/my_navbar.dart';
 
 class SavedPage extends StatefulWidget {
   const SavedPage({super.key});

@@ -56,14 +56,14 @@ class _RegisterPageState extends State<RegisterPage> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text('Error'),
-            content: Text('Error has occured, please try again later.'),
+            title: const Text('Error'),
+            content: const Text('Error has occured, please try again later.'),
             actions: <Widget>[
               TextButton(
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: Text('OK'),
+                child: const Text('OK'),
               ),
             ],
           );
@@ -173,7 +173,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       style:
                           TextStyle(color: Color.fromARGB(255, 131, 131, 131)),
                     ),
-                    SizedBox(width: 4),
+                    const SizedBox(width: 4),
                     GestureDetector(
                       onTap: () {
                         Navigator.pushNamed(context, '/login');

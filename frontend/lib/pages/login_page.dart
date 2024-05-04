@@ -1,15 +1,13 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:frontend/components/my_textfield.dart';
 import 'package:frontend/components/my_signinButton.dart';
 import 'package:frontend/components/square_tile.dart';
-import 'package:frontend/pages/home_page.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class LoginPage extends StatefulWidget {
-  LoginPage({super.key});
+  const LoginPage({super.key});
 
   @override
   _LoginPageState createState() => _LoginPageState();
@@ -23,7 +21,6 @@ class _LoginPageState extends State<LoginPage> {
   //sign in user in method
   void signInUser(BuildContext context) async {
     try {
-      log('data: signin in');
       final uri = Uri.parse('http://192.168.1.6:8000/api/login');
       log(uri.toString());
       final response = await http.post(
@@ -44,14 +41,15 @@ class _LoginPageState extends State<LoginPage> {
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
-              title: Text('Login Failed'),
-              content: Text('Invalid email or password. Please try again.'),
+              title: const Text('Login Failed'),
+              content:
+                  const Text('Invalid email or password. Please try again.'),
               actions: <Widget>[
                 TextButton(
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
-                  child: Text('OK'),
+                  child: const Text('OK'),
                 ),
               ],
             );

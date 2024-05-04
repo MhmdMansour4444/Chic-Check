@@ -23,7 +23,7 @@ class CategoryController extends Controller
         return response()->json(['message' => 'Category created successfully'], 201);
     }
 
-    public function read(Request $request)
+    public function get(Request $request)
     {
         $categories = Category::all();
 

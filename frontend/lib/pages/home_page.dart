@@ -1,9 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/pages/home_page.dart';
-import 'package:frontend/pages/closet_page.dart';
-import 'package:frontend/pages/camera_page.dart';
-import 'package:frontend/pages/forums_page.dart';
-import 'package:frontend/components/my_navbar.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -12,13 +7,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   void onTap() {}
-
-  final List<Widget> _pages = [
-    HomePage(),
-    ClosetPage(),
-    CameraPage(),
-    ForumsPage(),
-  ];
 
   @override
   Widget build(BuildContext context) {
