@@ -35,10 +35,9 @@ class ClothController extends Controller
         return response()->json(['message' => 'Cloth created successfully'], 201);
     }
 
-    public function read(Request $request)
+    public function get(Request $request)
     {
-        $clothes = Cloth::with('user', 'category')->latest()->paginate(10);
-
+        $clothes = Cloth::with('user', 'category') -> orderBy('id', 'desc')-> take(10)-> get();
         return response()->json($clothes, 200);
     }
 

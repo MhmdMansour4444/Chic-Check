@@ -38,7 +38,7 @@ class _LoginPageState extends State<LoginPage> {
         Map<String, dynamic> data = json.decode(response.body);
         emailController.clear();
         passwordController.clear();
-        Navigator.pushNamed(context, '/closet');
+        Navigator.pushNamed(context, '/homepage');
       } else {
         showDialog(
           context: context,
@@ -197,9 +197,9 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
 
-                const SizedBox(height: 25),
+                // const SizedBox(height: 10),
 
-                // google + apple sign in button
+                // // google + apple sign in button
                 // const Row(
                 //   mainAxisAlignment: MainAxisAlignment.center,
                 //   children: [

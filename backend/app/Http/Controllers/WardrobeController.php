@@ -24,7 +24,7 @@ class WardrobeController extends Controller
         return response()->json(['message' => 'Wardrobe created successfully'], 201);
     }
 
-    public function read(Request $request)
+    public function get(Request $request)
     {
         $wardrobes = Wardrobe::with('user', 'clothes')->latest()->paginate(10);
 
