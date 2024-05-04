@@ -46,6 +46,7 @@ class _ClosetPageState extends State<ClosetPage> {
             ),
           ),
         ),
+        centerTitle: true,
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

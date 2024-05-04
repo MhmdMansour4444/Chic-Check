@@ -52,6 +52,7 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
         ),
+        centerTitle: true,
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
