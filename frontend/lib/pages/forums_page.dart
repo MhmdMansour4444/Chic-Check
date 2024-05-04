@@ -27,15 +27,25 @@ class _ForumsPageState extends State<ForumsPage> {
   }
 
   void fetchPosts() async {
-    final response = await http.get(Uri.parse('YOUR_API_ENDPOINT_HERE'));
-    if (response.statusCode == 200) {
-      final List<dynamic> responseData = json.decode(response.body);
-      setState(() {
-        posts = responseData.map((json) => Post.fromJson(json)).toList();
-      });
-    } else {
-      throw Exception('Failed to load posts');
-    }
+    // Mock post for testing
+    final mockPost =
+        Post(content: 'This is a mock post', user: User(username: 'MockUser'));
+
+    // Simulating fetching posts from the server
+    setState(() {
+      posts.add(mockPost);
+    });
+
+    // Uncomment below lines when integrating with real API
+    // final response = await http.get(Uri.parse('YOUR_API_ENDPOINT_HERE'));
+    // if (response.statusCode == 200) {
+    //   final List<dynamic> responseData = json.decode(response.body);
+    //   setState(() {
+    //     posts = responseData.map((json) => Post.fromJson(json)).toList();
+    //   });
+    // } else {
+    //   throw Exception('Failed to load posts');
+    // }
   }
 
   void postMessage() async {
@@ -54,6 +64,10 @@ class _ForumsPageState extends State<ForumsPage> {
     } else {
       throw Exception('Failed to post message');
     }
+  }
+
+  void likePost(Post post) {
+    // Implement like functionality here
   }
 
   @override
@@ -79,9 +93,30 @@ class _ForumsPageState extends State<ForumsPage> {
                 itemCount: posts.length,
                 itemBuilder: (context, index) {
                   final post = posts[index];
-                  return ListTile(
-                    title: Text(post.content),
-                    subtitle: Text('Posted by: ${post.user.username}'),
+                  return Container(
+                    padding: EdgeInsets.all(8),
+                    margin: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.grey),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        ListTile(
+                          title: Text(post.content),
+                          subtitle: Text('Posted by: ${post.user.username}'),
+                        ),
+                        Row(
+                          children: [
+                            IconButton(
+                              onPressed: () => likePost(post),
+                              icon: Icon(Icons.favorite_border),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   );
                 },
               ),
