@@ -30,30 +30,36 @@ class _ClosetPageState extends State<ClosetPage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    'Title 1',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
+                  OutlinedButton(
+                    onPressed: () {},
+                    child: const Text(
+                      'Title 1',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
-                  SizedBox(width: 70),
-                  Text(
-                    'Title 2',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
+                  const SizedBox(width: 70),
+                  OutlinedButton(
+                    onPressed: () {},
+                    child: const Text(
+                      'Title 2',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ],
               ),
             ),
           ),
-          SizedBox(height: 25),
+          const SizedBox(height: 25),
           Expanded(
             child: GridView.builder(
               itemCount: 5,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 3,
               ),
               itemBuilder: (context, index) {
