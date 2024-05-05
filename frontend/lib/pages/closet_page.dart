@@ -65,7 +65,7 @@ class _ClosetPageState extends State<ClosetPage> {
                         ),
                       ),
                       child: const Text(
-                        'Title 1',
+                        'My Closet',
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
@@ -89,7 +89,7 @@ class _ClosetPageState extends State<ClosetPage> {
                         ),
                       ),
                       child: const Text(
-                        'Title 2',
+                        'Virtual Closet',
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
