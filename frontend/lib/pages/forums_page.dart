@@ -75,7 +75,7 @@ class _ForumsPageState extends State<ForumsPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Forums Page',
+          'The Forum',
         ),
         centerTitle: true,
         actions: [
