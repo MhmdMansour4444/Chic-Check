@@ -70,3 +70,12 @@ Route::post('/wardrobes', [WardrobeController::class, 'create']);
 Route::get('/wardrobes', [WardrobeController::class, 'get']);
 Route::put('/wardrobes/{id}', [WardrobeController::class, 'update'])->middleware('auth');
 Route::delete('/wardrobes/{id}', [WardrobeController::class, 'delete']);
+
+// ItemCompatibility routes
+Route::post('/item-compatibilities', [ItemCompatibilityController::class, 'create']);
+Route::get('/item-compatibilities', [ItemCompatibilityController::class, 'index']);
+Route::delete('/item-compatibilities/{id}', [ItemCompatibilityController::class, 'delete']);
+
+// WardrobeCloth routes
+Route::post('/wardrobe-clothes/{wardrobeId}', [WardrobeClothController::class, 'attachClothToWardrobe']);
+Route::delete('/wardrobe-clothes/{wardrobeId}', [WardrobeClothController::class, 'detachClothFromWardrobe']);
