@@ -10,26 +10,13 @@ use App\Models\User;
 
 class UserController extends Controller
 {
-    public function create(Request $request)
+    public function showAllUsers()
     {
-        $request->validate([
-            'username' => 'required|string|max:50|unique:users',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|string|min:6',
-        ]);
-
-        $user = new User([
-            'username' => $request->username,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
-
-        $user->save();
-
-        return response()->json(['message' => 'User created successfully'], 201);
+        $users = User::all();
+        return response()->json($users);
     }
 
-    public function show($id)
+    public function getUser($id)
     {
         $user = User::findOrFail($id);
 
