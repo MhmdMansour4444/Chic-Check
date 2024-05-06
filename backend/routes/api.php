@@ -64,3 +64,9 @@ Route::delete('/forums/{id}', [ForumController::class, 'delete']);
 Route::post('/posts', [PostController::class, 'create']);
 Route::get('/posts', [PostController::class, 'get']);
 Route::delete('/posts/{id}', [PostController::class, 'delete']);
+
+// Wardrobe routes
+Route::post('/wardrobes', [WardrobeController::class, 'create']);
+Route::get('/wardrobes', [WardrobeController::class, 'get']);
+Route::put('/wardrobes/{id}', [WardrobeController::class, 'update'])->middleware('auth');
+Route::delete('/wardrobes/{id}', [WardrobeController::class, 'delete']);
