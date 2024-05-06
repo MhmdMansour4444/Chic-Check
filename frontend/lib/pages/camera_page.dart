@@ -44,22 +44,78 @@ class _CameraPageState extends State<CameraPage> {
     if (!_isCameraReady) {
       return Scaffold(
         appBar: AppBar(
-          title: Text('Camera Page'),
+          title: InkWell(
+            onTap: () {}, // Add functionality if needed
+            child: Container(
+              padding: const EdgeInsets.symmetric(vertical: 4.0),
+              decoration: const BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(
+                    color: Color(0xFFFF6678),
+                    width: 3.0,
+                  ),
+                ),
+              ),
+              child: const Text(
+                'Camera',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
           centerTitle: true,
-          automaticallyImplyLeading: false,
         ),
         body: Center(child: CircularProgressIndicator()),
       );
     }
+    final double previewHeight = MediaQuery.of(context).size.height * 0.6;
+    final double previewWidth = MediaQuery.of(context).size.width * 0.8;
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Camera Page'),
+        title: InkWell(
+          onTap: () {},
+          child: Container(
+            padding: const EdgeInsets.symmetric(vertical: 4.0),
+            decoration: const BoxDecoration(
+              border: Border(
+                bottom: BorderSide(
+                  color: Color(0xFFFF6678),
+                  width: 3.0,
+                ),
+              ),
+            ),
+            child: const Text(
+              'Camera',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ),
         centerTitle: true,
       ),
-      body: CameraPreview(_controller),
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.only(bottom: 40.0),
+          child: Container(
+            width: previewWidth,
+            height: previewHeight,
+            child: CameraPreview(_controller),
+          ),
+        ),
+      ),
+      floatingActionButtonLocation:
+          FloatingActionButtonLocation.miniCenterFloat,
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.camera),
+        shape: RoundedRectangleBorder(
+          side: BorderSide(color: Color(0xFFFF6678), width: 2.0),
+          borderRadius: BorderRadius.circular(30.0),
+        ),
+        foregroundColor: Colors.black,
         onPressed: () async {
           try {
             final image = await _controller.takePicture();
