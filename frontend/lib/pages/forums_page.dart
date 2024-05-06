@@ -74,6 +74,7 @@ class _ForumsPageState extends State<ForumsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: Text(
           'The Forum',
         ),

@@ -12,6 +12,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: InkWell(
           child: Container(
             padding: const EdgeInsets.symmetric(vertical: 4.0),

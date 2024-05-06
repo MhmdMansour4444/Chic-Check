@@ -72,6 +72,7 @@ class _SavedPageState extends State<SavedPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: InkWell(
           child: Container(
             padding: const EdgeInsets.symmetric(vertical: 4.0),
@@ -176,7 +177,10 @@ class OutfitCard extends StatelessWidget {
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  child: Text('Close'),
+                  child: Text(
+                    'Close',
+                    style: TextStyle(color: Color(0xFFFF6678)),
+                  ),
                 ),
               ],
             );

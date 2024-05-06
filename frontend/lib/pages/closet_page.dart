@@ -19,6 +19,7 @@ class _ClosetPageState extends State<ClosetPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         centerTitle: true,
         title: InkWell(
           child: Container(
