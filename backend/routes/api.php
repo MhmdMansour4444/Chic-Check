@@ -37,24 +37,30 @@ Route::get('/users', [UserController::class, 'showAllUsers']);
 
 // categories routes
 Route::post('/categories', [CategoryController::class, 'create']);
-Route::get('/categories', [CategoryController::class, 'index']);
+Route::get('/categories', [CategoryController::class, 'get']);
 Route::put('/categories/{id}', [CategoryController::class, 'update']);
 Route::delete('/categories/{id}', [CategoryController::class, 'delete']);
 
 //clothings routes
 Route::post('/clothes', [ClothController::class, 'create']);
-Route::get('/clothes', [ClothController::class, 'index']);
+Route::get('/clothes', [ClothController::class, 'get']);
 Route::put('/clothes/{id}', [ClothController::class, 'update']);
 Route::delete('/clothes/{id}', [ClothController::class, 'delete']);
 
 // Outfit routes
 Route::post('/outfits', [OutfitController::class, 'create']);
-Route::get('/outfits', [OutfitController::class, 'index']);
+Route::get('/outfits', [OutfitController::class, 'get']);
 Route::put('/outfits/{id}', [OutfitController::class, 'update']);
 Route::delete('/outfits/{id}', [OutfitController::class, 'delete']);
 
 // Forum routes
 Route::post('/forums', [ForumController::class, 'create']);
-Route::get('/forums', [ForumController::class, 'index']);
+Route::get('/forums', [ForumController::class, 'get']);
 Route::put('/forums/{id}', [ForumController::class, 'update']);
 Route::delete('/forums/{id}', [ForumController::class, 'delete']);
+
+
+// Post routes
+Route::post('/posts', [PostController::class, 'create']);
+Route::get('/posts', [PostController::class, 'get']);
+Route::delete('/posts/{id}', [PostController::class, 'delete']);
