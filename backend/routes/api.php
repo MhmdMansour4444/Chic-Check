@@ -35,7 +35,14 @@ Route::group(["middleware" => 'auth'], function () {
 });
 Route::get('/users', [UserController::class, 'showAllUsers']);
 
+// categories routes
 Route::post('/categories', [CategoryController::class, 'create']);
 Route::get('/categories', [CategoryController::class, 'index']);
 Route::put('/categories/{id}', [CategoryController::class, 'update']);
 Route::delete('/categories/{id}', [CategoryController::class, 'delete']);
+
+//clothings routes
+Route::post('/clothes', [ClothController::class, 'create']);
+Route::get('/clothes', [ClothController::class, 'index']);
+Route::put('/clothes/{id}', [ClothController::class, 'update']);
+Route::delete('/clothes/{id}', [ClothController::class, 'delete']);
