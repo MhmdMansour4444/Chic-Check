@@ -26,10 +26,16 @@ Route::post('/refresh', [AuthController::class, 'refresh']);
 
 
 Route::group(["middleware" => 'auth'], function () {
+
     // User routes
     Route::post('/users', [UserController::class, 'create']);
-    Route::get('/users/{id}', [UserController::class, 'show']);
+    Route::get('/users/{id}', [UserController::class, 'getUser']);
     Route::put('/users/{id}', [UserController::class, 'update']);
     Route::delete('/users/{id}', [UserController::class, 'delete']);
-
 });
+Route::get('/users', [UserController::class, 'showAllUsers']);
+
+Route::post('/categories', [CategoryController::class, 'create']);
+Route::get('/categories', [CategoryController::class, 'index']);
+Route::put('/categories/{id}', [CategoryController::class, 'update']);
+Route::delete('/categories/{id}', [CategoryController::class, 'delete']);
