@@ -46,3 +46,9 @@ Route::post('/clothes', [ClothController::class, 'create']);
 Route::get('/clothes', [ClothController::class, 'index']);
 Route::put('/clothes/{id}', [ClothController::class, 'update']);
 Route::delete('/clothes/{id}', [ClothController::class, 'delete']);
+
+// Outfit routes
+Route::post('/outfits', [OutfitController::class, 'create']);
+Route::get('/outfits', [OutfitController::class, 'index']);
+Route::put('/outfits/{id}', [OutfitController::class, 'update']);
+Route::delete('/outfits/{id}', [OutfitController::class, 'delete']);
