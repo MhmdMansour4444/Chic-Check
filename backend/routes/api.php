@@ -52,3 +52,9 @@ Route::post('/outfits', [OutfitController::class, 'create']);
 Route::get('/outfits', [OutfitController::class, 'index']);
 Route::put('/outfits/{id}', [OutfitController::class, 'update']);
 Route::delete('/outfits/{id}', [OutfitController::class, 'delete']);
+
+// Forum routes
+Route::post('/forums', [ForumController::class, 'create']);
+Route::get('/forums', [ForumController::class, 'index']);
+Route::put('/forums/{id}', [ForumController::class, 'update']);
+Route::delete('/forums/{id}', [ForumController::class, 'delete']);
