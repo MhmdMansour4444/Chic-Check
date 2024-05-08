@@ -37,11 +37,12 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
-        child: Center(
-          child: Column(
-            children: [
-              const SizedBox(height: 30),
-              Container(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 30),
+            Center(
+              child: Container(
                 padding: const EdgeInsets.all(40),
                 decoration: BoxDecoration(
                   color: const Color.fromARGB(83, 255, 102, 120),
@@ -67,13 +68,19 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
               ),
-              const SizedBox(height: 20),
-              const Text(
+            ),
+            const SizedBox(height: 20),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              child: const Text(
                 'Use your camera for our fitcheck',
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.w100),
               ),
-              const SizedBox(height: 20),
-              GestureDetector(
+            ),
+            const SizedBox(height: 20),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              child: GestureDetector(
                 onTap: onTap,
                 child: Container(
                   padding: const EdgeInsets.only(
@@ -92,14 +99,19 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
-              const SizedBox(height: 30),
-              const Text(
+            ),
+            const SizedBox(height: 30),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              child: const Text(
                 'Or browse our community for the best outfit advices out there!',
-                textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.w100),
               ),
-              const SizedBox(height: 20),
-              GestureDetector(
+            ),
+            const SizedBox(height: 20),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              child: GestureDetector(
                 onTap: onTap,
                 child: Container(
                   padding: const EdgeInsets.only(
@@ -118,8 +130,8 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

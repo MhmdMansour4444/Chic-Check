@@ -32,7 +32,7 @@ class _ClosetPageState extends State<ClosetPage> {
               ),
             ),
             child: const Text(
-              'The Closet',
+              'ChicCloset',
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,

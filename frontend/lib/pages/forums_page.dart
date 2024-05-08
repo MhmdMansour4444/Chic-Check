@@ -100,7 +100,7 @@ class _ForumsPageState extends State<ForumsPage> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: Text(
-          'The Forum',
+          'ChicForum',
         ),
         centerTitle: true,
         actions: [
