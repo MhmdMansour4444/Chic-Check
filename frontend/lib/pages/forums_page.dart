@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:io';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:image_picker/image_picker.dart';
 
 class ForumsPage extends StatefulWidget {
   const ForumsPage({Key? key}) : super(key: key);
@@ -64,6 +65,25 @@ class _ForumsPageState extends State<ForumsPage> {
       );
       if (response.statusCode == 201) {
         fetchPosts();
+        // Show alert
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text("Success"),
+              content: Text("Post successful"),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text("OK"),
+                ),
+              ],
+            );
+          },
+        );
+        postController.clear();
       } else {
         throw Exception('Failed to post message');
       }
