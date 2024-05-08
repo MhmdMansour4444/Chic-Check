@@ -35,7 +35,7 @@ class _LoginPageState extends State<LoginPage> {
         Map<String, dynamic> data = json.decode(response.body);
         emailController.clear();
         passwordController.clear();
-        Navigator.pushNamed(context, '/homepage');
+        Navigator.pushNamed(context, '/preference');
       } else {
         showDialog(
           context: context,
@@ -144,7 +144,7 @@ class _LoginPageState extends State<LoginPage> {
                 const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 35.0),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
                         'Forgot Password?',
@@ -155,7 +155,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
 
-                const SizedBox(height: 200),
+                const SizedBox(height: 150),
 
                 // sign in button
                 MySignInButton(
@@ -195,22 +195,21 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
 
-                // const SizedBox(height: 10),
+                const SizedBox(height: 10),
 
-                // // google + apple sign in button
-                // const Row(
-                //   mainAxisAlignment: MainAxisAlignment.center,
-                //   children: [
-                //     //google button
-                //     SquareTile(imagePath: 'assets/image/google.png'),
+                // google + apple sign in button
+                const Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    //google button
+                    SquareTile(imagePath: 'assets/google.png'),
 
-                //     SizedBox(width: 10),
+                    SizedBox(width: 10),
 
-                //     //apple button
-                //     SquareTile(imagePath: 'assets/image/apple.png'),
-                //   ],
-                // ),
-
+                    //apple button
+                    SquareTile(imagePath: 'assets/apple.png'),
+                  ],
+                ),
                 const SizedBox(height: 25),
 
                 // not a member ? register now

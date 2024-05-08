@@ -70,7 +70,7 @@ class _HomePageState extends State<HomePage> {
               const SizedBox(height: 20),
               const Text(
                 'Use your camera for our fitcheck',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal),
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w100),
               ),
               const SizedBox(height: 20),
               GestureDetector(
@@ -96,7 +96,7 @@ class _HomePageState extends State<HomePage> {
               const Text(
                 'Or browse our community for the best outfit advices out there!',
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal),
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w100),
               ),
               const SizedBox(height: 20),
               GestureDetector(

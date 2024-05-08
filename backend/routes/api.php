@@ -32,8 +32,9 @@ Route::group(["middleware" => 'auth'], function () {
     Route::get('/users/{id}', [UserController::class, 'getUser']);
     Route::put('/users/{id}', [UserController::class, 'update']);
     Route::delete('/users/{id}', [UserController::class, 'delete']);
+    Route::get('/users', [UserController::class, 'showAllUsers']);
 });
-Route::get('/users', [UserController::class, 'showAllUsers']);
+
 
 // categories routes
 Route::post('/categories', [CategoryController::class, 'create']);
