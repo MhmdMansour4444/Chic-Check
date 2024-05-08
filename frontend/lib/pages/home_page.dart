@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/pages/camera_page.dart'; // Import the CameraPage
+import 'package:frontend/pages/forums_page.dart'; // Import the ForumsPage
 
 class HomePage extends StatefulWidget {
   @override
@@ -6,7 +8,24 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  void onTap() {}
+  void onTap(int index) {
+    switch (index) {
+      case 0:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => CameraPage()),
+        );
+        break;
+      case 1:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => ForumsPage()),
+        );
+        break;
+      default:
+        break;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -81,7 +100,7 @@ class _HomePageState extends State<HomePage> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10.0),
               child: GestureDetector(
-                onTap: onTap,
+                onTap: () => onTap(0),
                 child: Container(
                   padding: const EdgeInsets.only(
                       bottom: 12, left: 25, right: 25, top: 12),
@@ -112,7 +131,7 @@ class _HomePageState extends State<HomePage> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10.0),
               child: GestureDetector(
-                onTap: onTap,
+                onTap: () => onTap(1),
                 child: Container(
                   padding: const EdgeInsets.only(
                       bottom: 12, left: 25, right: 25, top: 12),

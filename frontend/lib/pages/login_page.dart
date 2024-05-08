@@ -212,8 +212,8 @@ class _LoginPageState extends State<LoginPage> {
 
                     SizedBox(width: 10),
 
-                    //apple button
-                    SquareTile(imagePath: 'assets/apple.png'),
+                    // //apple button
+                    // SquareTile(imagePath: 'assets/apple.png'),
                   ],
                 ),
                 const SizedBox(height: 25),
