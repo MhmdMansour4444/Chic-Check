@@ -18,16 +18,42 @@ class _RegisterPageState extends State<RegisterPage> {
   final passwordController = TextEditingController();
 
   void registerUser(BuildContext context) async {
+    final username = usernameController.text.trim();
+    final email = emailController.text.trim();
+    final password = passwordController.text.trim();
+
+    if (username.isEmpty || email.isEmpty || password.isEmpty) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Error'),
+            content: Text('Please fill in all fields.'),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text('OK'),
+              ),
+            ],
+          );
+        },
+      );
+      return; // Stop further execution
+    }
+
     try {
       final uri = Uri.parse('http://192.168.1.6:8000/api/register');
       final response = await http.post(
-        Uri.parse('http://192.168.1.6:8000/api/register'),
+        uri,
         body: {
-          'username': usernameController.text.trim(),
-          'email': emailController.text.trim(),
-          'password': passwordController.text.trim(),
+          'username': username,
+          'email': email,
+          'password': password,
         },
       );
+
       showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -56,14 +82,14 @@ class _RegisterPageState extends State<RegisterPage> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: const Text('Error'),
-            content: const Text('Error has occured, please try again later.'),
+            title: Text('Error'),
+            content: Text('Error has occurred, please try again later.'),
             actions: <Widget>[
               TextButton(
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: const Text('OK'),
+                child: Text('OK'),
               ),
             ],
           );
@@ -179,7 +205,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         Navigator.pushNamed(context, '/login');
                       },
                       child: const Text(
-                        'Register Now',
+                        'Login',
                         style: TextStyle(
                           color: Color(0xFFFF6678),
                           fontWeight: FontWeight.bold,

@@ -3,6 +3,7 @@ import 'package:frontend/components/my_textfield.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:io';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ForumsPage extends StatefulWidget {
   const ForumsPage({Key? key}) : super(key: key);
@@ -26,49 +27,52 @@ class _ForumsPageState extends State<ForumsPage> {
     fetchPosts();
   }
 
+  Future<String?> getToken() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getString('token');
+  }
+
   void fetchPosts() async {
-    // Mock post for testing
-    final mockPost =
-        Post(content: 'This is a mock post', user: User(username: 'MockUser'));
-
-    // Simulating fetching posts from the server
-    setState(() {
-      posts.add(mockPost);
-    });
-
-    // Uncomment below lines when integrating with real API
-    // final response = await http.get(Uri.parse('YOUR_API_ENDPOINT_HERE'));
-    // if (response.statusCode == 200) {
-    //   final List<dynamic> responseData = json.decode(response.body);
-    //   setState(() {
-    //     posts = responseData.map((json) => Post.fromJson(json)).toList();
-    //   });
-    // } else {
-    //   throw Exception('Failed to load posts');
-    // }
+    try {
+      final response =
+          await http.get(Uri.parse('http://192.168.1.6:8000/api/posts'));
+      if (response.statusCode == 200) {
+        final Map<String, dynamic> responseData = json.decode(response.body);
+        final List<dynamic> postsData = responseData['data'];
+        setState(() {
+          posts = postsData.map((json) => Post.fromJson(json)).toList();
+        });
+      } else {
+        throw Exception('Failed to load posts');
+      }
+    } catch (e) {
+      print('Error fetching posts: $e');
+    }
   }
 
   void postMessage() async {
-    final uri = Uri.parse('YOUR_API_ENDPOINT_HERE');
-    final request = http.MultipartRequest('POST', uri);
-    request.fields['forum_id'] = 'YOUR_FORUM_ID_HERE';
-    request.fields['content'] = postController.text;
-    if (_image != null) {
-      request.files.add(
-        await http.MultipartFile.fromPath('image', _image!.path),
+    try {
+      final token = await getToken();
+      final response = await http.post(
+        Uri.parse('http://192.168.1.6:8000/api/posts'),
+        headers: {
+          HttpHeaders.authorizationHeader: 'Bearer $token',
+        },
+        body: {
+          'content': postController.text,
+        },
       );
-    }
-    final response = await request.send();
-    if (response.statusCode == 201) {
-      fetchPosts();
-    } else {
-      throw Exception('Failed to post message');
+      if (response.statusCode == 201) {
+        fetchPosts();
+      } else {
+        throw Exception('Failed to post message');
+      }
+    } catch (e) {
+      print('Error posting message: $e');
     }
   }
 
-  void likePost(Post post) {
-    // Implement like functionality here
-  }
+  void likePost(Post post) {}
 
   @override
   Widget build(BuildContext context) {
@@ -141,7 +145,7 @@ class _ForumsPageState extends State<ForumsPage> {
                     },
                     icon: Icon(Icons.image),
                   ),
-                  SizedBox(width: 10), // Adjust spacing between icons
+                  SizedBox(width: 10),
                   IconButton(
                     onPressed: postMessage,
                     icon: Icon(Icons.arrow_circle_up),
@@ -149,7 +153,6 @@ class _ForumsPageState extends State<ForumsPage> {
                 ],
               ),
             ),
-            //logged  in as
             Text("logged in as: "),
           ],
         ),

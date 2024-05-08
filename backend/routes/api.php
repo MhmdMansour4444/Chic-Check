@@ -7,7 +7,6 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ClothController;
 use App\Http\Controllers\OutfitController;
-use App\Http\Controllers\ForumController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\WardrobeController;
 use App\Http\Controllers\ItemCompatibilityController;
@@ -45,8 +44,8 @@ Route::delete('/categories/{id}', [CategoryController::class, 'delete']);
 //clothings routes
 Route::post('/clothes', [ClothController::class, 'create']);
 Route::get('/clothes', [ClothController::class, 'get']);
-Route::put('/clothes/{id}', [ClothController::class, 'update']);
-Route::delete('/clothes/{id}', [ClothController::class, 'delete']);
+Route::put('/clothes/{id}', [ClothController::class, 'update'])->middleware('auth');
+Route::delete('/clothes/{id}', [ClothController::class, 'delete'])->middleware('auth');
 
 // Outfit routes
 Route::post('/outfits', [OutfitController::class, 'create']);
@@ -54,17 +53,11 @@ Route::get('/outfits', [OutfitController::class, 'get']);
 Route::put('/outfits/{id}', [OutfitController::class, 'update']);
 Route::delete('/outfits/{id}', [OutfitController::class, 'delete']);
 
-// Forum routes
-Route::post('/forums', [ForumController::class, 'create']);
-Route::get('/forums', [ForumController::class, 'get']);
-Route::put('/forums/{id}', [ForumController::class, 'update']);
-Route::delete('/forums/{id}', [ForumController::class, 'delete']);
-
 
 // Post routes
-Route::post('/posts', [PostController::class, 'create']);
+Route::post('/posts', [PostController::class, 'create'])->middleware('auth');
 Route::get('/posts', [PostController::class, 'get']);
-Route::delete('/posts/{id}', [PostController::class, 'delete']);
+Route::delete('/posts/{id}', [PostController::class, 'delete'])->middleware('auth');
 
 // Wardrobe routes
 Route::post('/wardrobes', [WardrobeController::class, 'create']);
@@ -75,7 +68,7 @@ Route::delete('/wardrobes/{id}', [WardrobeController::class, 'delete']);
 // ItemCompatibility routes
 Route::post('/item-compatibilities', [ItemCompatibilityController::class, 'create']);
 Route::get('/item-compatibilities', [ItemCompatibilityController::class, 'index']);
-Route::delete('/item-compatibilities/{id}', [ItemCompatibilityController::class, 'delete']);
+Route::delete('/item-compatibilities/{id}', [ItemCompatibilityController::class, 'delete'])->middleware('auth');
 
 // WardrobeCloth routes
 Route::post('/wardrobe-clothes/{wardrobeId}', [WardrobeClothController::class, 'attachClothToWardrobe']);

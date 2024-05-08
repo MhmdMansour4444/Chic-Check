@@ -5,6 +5,7 @@ import 'package:frontend/components/my_signinButton.dart';
 import 'package:frontend/components/square_tile.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -24,7 +25,7 @@ class _LoginPageState extends State<LoginPage> {
       final uri = Uri.parse('http://192.168.1.6:8000/api/login');
       log(uri.toString());
       final response = await http.post(
-        Uri.parse('http://192.168.1.6:8000/api/login'),
+        uri,
         body: {
           'email': emailController.text.trim(),
           'password': passwordController.text.trim(),
@@ -35,6 +36,11 @@ class _LoginPageState extends State<LoginPage> {
         Map<String, dynamic> data = json.decode(response.body);
         emailController.clear();
         passwordController.clear();
+
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        prefs.setString('token', data['authorisation']['token']);
+        print('Token: ${data['authorisation']['token']}');
+
         Navigator.pushNamed(context, '/preference');
       } else {
         showDialog(

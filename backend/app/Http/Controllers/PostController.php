@@ -11,14 +11,12 @@ class PostController extends Controller
     public function create(Request $request)
     {
         $request->validate([
-            'forum_id' => 'required|exists:forums,id',
             'content' => 'required|string',
             'image' => 'nullable|image|max:2048',
         ]);
 
         $post = new Post([
             'user_id' => Auth::id(),
-            'forum_id' => $request->forum_id,
             'content' => $request->content,
             'image' => $request->hasFile('image') ? $request->file('image')->store('posts') : null,
             'timestamp' => now(),
@@ -31,7 +29,7 @@ class PostController extends Controller
 
     public function get(Request $request)
     {
-        $posts = Post::with('user', 'forum')->latest()->paginate(10);
+        $posts = Post::with('user')->latest()->paginate(10);
 
         return response()->json($posts, 200);
     }

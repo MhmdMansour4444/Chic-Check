@@ -9,7 +9,6 @@ class Post extends Model
 {
     protected $fillable = [
         'user_id',
-        'forum_id',
         'content',
         'timestamp',
     ];
@@ -19,10 +18,6 @@ class Post extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function forum()
-    {
-        return $this->belongsTo(Forum::class, 'forum_id');
-    }
 
 
 }
