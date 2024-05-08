@@ -82,14 +82,14 @@ class _RegisterPageState extends State<RegisterPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const SizedBox(height: 50),
-                const Icon(
-                  Icons.lock,
-                  size: 100,
+                const SizedBox(height: 20),
+                Image.asset(
+                  'assets/icon-onlyFF6678.png',
+                  width: 120,
                 ),
-                const SizedBox(height: 50),
+                const SizedBox(height: 30),
                 const Text(
-                  'Chic Check',
+                  'CHIC CHECK',
                   style: TextStyle(
                     color: Color.fromARGB(255, 0, 0, 0),
                     fontSize: 24,
@@ -114,7 +114,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   hintText: 'Password',
                   obscureText: true,
                 ),
-                const SizedBox(height: 80),
+                const SizedBox(height: 65),
                 MySignUpButton(
                   onTap: () => registerUser(context),
                 ),
@@ -149,7 +149,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                 ),
 
-                const SizedBox(height: 25),
+                const SizedBox(height: 10),
 
                 // google + apple sign in button
                 const Row(

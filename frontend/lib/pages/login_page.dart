@@ -103,17 +103,17 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const SizedBox(height: 50),
+                const SizedBox(height: 20),
                 // logo
-                const Icon(
-                  Icons.lock,
-                  size: 100,
+                Image.asset(
+                  'assets/icon-onlyFF6678.png',
+                  width: 120,
                 ),
 
-                const SizedBox(height: 50),
+                const SizedBox(height: 30),
 
                 const Text(
-                  'Chic Check',
+                  'CHIC CHECK',
                   style: TextStyle(
                     color: Color.fromARGB(255, 0, 0, 0),
                     fontSize: 24,
@@ -155,7 +155,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
 
-                const SizedBox(height: 150),
+                const SizedBox(height: 130),
 
                 // sign in button
                 MySignInButton(
