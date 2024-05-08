@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/components/my_navbar.dart';
 
 class ClosetPage extends StatefulWidget {
   @override
@@ -104,21 +103,27 @@ class _ClosetPageState extends State<ClosetPage> {
           ),
           const SizedBox(height: 20),
           Expanded(
-            child: GridView.builder(
-              itemCount: 5,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: GridView.builder(
+                itemCount: 5,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,
+                ),
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10.0),
+                      child: Container(
+                        height: 30,
+                        width: 30,
+                        color: Colors.grey[300],
+                      ),
+                    ),
+                  );
+                },
               ),
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    height: 30,
-                    width: 30,
-                    color: Colors.grey[300],
-                  ),
-                );
-              },
             ),
           ),
         ],
@@ -126,6 +131,8 @@ class _ClosetPageState extends State<ClosetPage> {
     );
   }
 }
+
+
 
 
 

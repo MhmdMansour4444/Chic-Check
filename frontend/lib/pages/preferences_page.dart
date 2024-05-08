@@ -117,12 +117,12 @@ class _PreferenceScreenState extends State<PreferenceScreen> {
                 );
               }).toList(),
             ),
-            SizedBox(height: 20.0),
-            Text(
+            const SizedBox(height: 20.0),
+            const Text(
               'Select Your Preferred Colors (Up to 3)',
               style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 10.0),
+            const SizedBox(height: 10.0),
             Wrap(
               spacing: 8.0,
               children: preferredColors.map((color) {

@@ -4,7 +4,6 @@ import 'package:frontend/pages/closet_page.dart';
 import 'package:frontend/pages/camera_page.dart';
 import 'package:frontend/pages/forums_page.dart';
 import 'package:frontend/pages/saved_page.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
 
 class MyNavBar extends StatefulWidget {
   const MyNavBar({super.key});
