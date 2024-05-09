@@ -48,19 +48,22 @@ class UserController extends Controller
         }
 
         if ($request->hasFile('profile_pic')) {
-
-            $profilePicPath = $request->file('profile_pic')->store('profile_pics');
+            // Delete previous profile picture if exists
             if ($user->profile_pic) {
                 Storage::delete($user->profile_pic);
             }
 
+            // Store new profile picture in a folder named 'profile_pics'
+            $profilePicPath = $request->file('profile_pic')->store('profile_pics', 'public');
+
+            // Update user's profile picture path
             $user->profile_pic = $profilePicPath;
         }
-
         $user->save();
 
         return response()->json(['message' => 'User updated successfully'], 200);
     }
+
 
 
     public function delete($id)
