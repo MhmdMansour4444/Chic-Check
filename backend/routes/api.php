@@ -11,6 +11,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\WardrobeController;
 use App\Http\Controllers\ItemCompatibilityController;
 use App\Http\Controllers\WardrobeClothController;
+use App\Http\Controllers\ImageController;
 
 
 Route::get('/user', function (Request $request) {
@@ -73,3 +74,6 @@ Route::delete('/item-compatibilities/{id}', [ItemCompatibilityController::class,
 // WardrobeCloth routes
 Route::post('/wardrobe-clothes/{wardrobeId}', [WardrobeClothController::class, 'attachClothToWardrobe']);
 Route::delete('/wardrobe-clothes/{wardrobeId}', [WardrobeClothController::class, 'detachClothFromWardrobe']);
+
+
+Route::post('/images/save', [ImageController::class, 'save'])->name('images.store');
