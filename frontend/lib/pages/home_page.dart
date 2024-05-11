@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/components/my_TryOnButton.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -127,12 +128,6 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
         ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          print('Trying on: $selectedClothing');
-        },
-        child: Icon(Icons.check),
       ),
     );
   }
