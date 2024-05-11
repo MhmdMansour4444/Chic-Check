@@ -10,13 +10,8 @@ class CardItem {
   });
 }
 
-class ClosetPage extends StatefulWidget {
-  @override
-  _ClosetPageState createState() => _ClosetPageState();
-}
-
-class _ClosetPageState extends State<ClosetPage> {
-  List<CardItem> items = [
+class ClosetPage extends StatelessWidget {
+  final List<CardItem> shoes = [
     const CardItem(
       urlImage:
           'https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
@@ -38,6 +33,11 @@ class _ClosetPageState extends State<ClosetPage> {
       title: 'Nike Free run 4',
     ),
   ];
+
+  final List<CardItem> hats = [];
+  final List<CardItem> torsos = [];
+  final List<CardItem> pants = [];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,28 +65,68 @@ class _ClosetPageState extends State<ClosetPage> {
           ),
         ),
       ),
-      body: Container(
-        height: 256,
-        child: ListView.separated(
-          scrollDirection: Axis.horizontal,
-          itemCount: 6,
-          separatorBuilder: (context, _) => SizedBox(width: 20),
-          itemBuilder: (context, index) => buildCard(),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            buildListView(title: 'Hats', items: hats),
+            buildListView(title: 'Torsos', items: torsos),
+            buildListView(title: 'Pants', items: pants),
+            buildListView(title: 'Shoes', items: shoes),
+          ],
         ),
       ),
     );
   }
 
-  Widget buildCard() => Container(
+  Widget buildListView(
+          {required String title, required List<CardItem> items}) =>
+      Container(
+        height: 200,
+        margin: const EdgeInsets.symmetric(vertical: 8.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Text(
+                title,
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            Expanded(
+              child: ListView.separated(
+                scrollDirection: Axis.horizontal,
+                itemCount: items.length,
+                separatorBuilder: (context, _) => SizedBox(width: 12),
+                itemBuilder: (context, index) => buildCard(items[index]),
+              ),
+            ),
+          ],
+        ),
+      );
+
+  Widget buildCard(CardItem item) => Container(
         width: 180,
-        height: 180,
-        color: Color(0xFFFF6678),
         child: Column(
           children: [
-            Image.network(
-                'https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'),
+            Expanded(
+              child: AspectRatio(
+                aspectRatio: 4 / 3,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: Image.network(
+                    item.urlImage,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+            ),
             const SizedBox(height: 4),
-            Text('Shoe XYZ', style: TextStyle(fontSize: 20))
+            Text(item.title, style: TextStyle(fontSize: 20))
           ],
         ),
       );
