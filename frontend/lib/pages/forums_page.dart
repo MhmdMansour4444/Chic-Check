@@ -36,7 +36,7 @@ class _ForumsPageState extends State<ForumsPage> {
   void fetchPosts() async {
     try {
       final response =
-          await http.get(Uri.parse('http://192.168.1.6:8000/api/posts'));
+          await http.get(Uri.parse('http://192.168.1.2:8000/api/posts'));
       if (response.statusCode == 200) {
         final Map<String, dynamic> responseData = json.decode(response.body);
         final List<dynamic> postsData = responseData['data'];
@@ -55,7 +55,7 @@ class _ForumsPageState extends State<ForumsPage> {
     try {
       final token = await getToken();
       final response = await http.post(
-        Uri.parse('http://192.168.1.6:8000/api/posts'),
+        Uri.parse('http://192.168.1.2:8000/api/posts'),
         headers: {
           HttpHeaders.authorizationHeader: 'Bearer $token',
         },
