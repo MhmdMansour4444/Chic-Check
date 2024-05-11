@@ -8,20 +8,52 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   String selectedClothing = '';
 
+  void changePoseImage() {}
+
+  void _showClothingOptions(String category) {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return GridViewWidget(
+          selectedClothing: selectedClothing,
+          onClothingSelected: (String clothing) {
+            setState(() {
+              selectedClothing = clothing;
+            });
+            Navigator.pop(context);
+          },
+          category: category,
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Virtual Try On'),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              'Welcome, User!',
-              style: TextStyle(fontSize: 16),
+        automaticallyImplyLeading: false,
+        centerTitle: true,
+        title: InkWell(
+          child: Container(
+            padding: const EdgeInsets.symmetric(vertical: 4.0),
+            decoration: const BoxDecoration(
+              border: Border(
+                bottom: BorderSide(
+                  color: Color(0xFFFF6678),
+                  width: 3.0,
+                ),
+              ),
+            ),
+            child: const Text(
+              'Virtual Try On',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
-        ],
+        ),
       ),
       body: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -33,36 +65,24 @@ class _HomePageState extends State<HomePage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 ClothingOption(
-                  color: Colors.blue,
-                  onTap: () {
-                    setState(() {
-                      selectedClothing = 'Hat';
-                    });
-                  },
+                  color: Colors.grey,
+                  category: 'Hat',
+                  onTap: _showClothingOptions,
                 ),
                 ClothingOption(
-                  color: Colors.green,
-                  onTap: () {
-                    setState(() {
-                      selectedClothing = 'Torso';
-                    });
-                  },
+                  color: Colors.grey,
+                  category: 'Torso',
+                  onTap: _showClothingOptions,
                 ),
                 ClothingOption(
-                  color: Colors.red,
-                  onTap: () {
-                    setState(() {
-                      selectedClothing = 'Pants';
-                    });
-                  },
+                  color: Colors.grey,
+                  category: 'Pants',
+                  onTap: _showClothingOptions,
                 ),
                 ClothingOption(
-                  color: Colors.yellow,
-                  onTap: () {
-                    setState(() {
-                      selectedClothing = 'Shoes';
-                    });
-                  },
+                  color: Colors.grey,
+                  category: 'Shoes',
+                  onTap: _showClothingOptions,
                 ),
               ],
             ),
@@ -70,27 +90,46 @@ class _HomePageState extends State<HomePage> {
           const SizedBox(
             width: 30,
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 25),
-            child: Container(
-              width: 200,
-              height: 450,
-              color: Colors.grey,
-              child: Center(
-                child: Text(
-                  'Pose Image',
-                  style: TextStyle(fontSize: 20),
-                ),
+          GestureDetector(
+            onTap: changePoseImage,
+            child: Padding(
+              padding: const EdgeInsets.only(top: 25),
+              child: Stack(
+                alignment: Alignment.bottomRight,
+                children: [
+                  Container(
+                    width: 200,
+                    height: 450,
+                    color: Colors.grey,
+                    child: Center(
+                      child: Text(
+                        'Pose Image',
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: SizedBox(
+                      width: 50,
+                      height: 50,
+                      child: ElevatedButton(
+                        onPressed: changePoseImage,
+                        child: Icon(Icons.camera_alt),
+                        style: ElevatedButton.styleFrom(
+                          padding: EdgeInsets.zero,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
         ],
       ),
-      // Button to try on selected clothing
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          // Implement logic to apply selected clothing to the pose image
-          // For now, just print the selected clothing
           print('Trying on: $selectedClothing');
         },
         child: Icon(Icons.check),
@@ -101,14 +140,18 @@ class _HomePageState extends State<HomePage> {
 
 class ClothingOption extends StatelessWidget {
   final Color color;
+  final String category;
   final Function onTap;
 
-  ClothingOption({required this.color, required this.onTap});
+  ClothingOption(
+      {required this.color, required this.category, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap as void Function()?,
+      onTap: () {
+        onTap(category);
+      },
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8.0),
         child: Container(
@@ -117,7 +160,7 @@ class ClothingOption extends StatelessWidget {
           color: color,
           child: Center(
             child: Text(
-              'Placeholder',
+              category,
               style: TextStyle(fontSize: 16),
             ),
           ),
@@ -126,3 +169,70 @@ class ClothingOption extends StatelessWidget {
     );
   }
 }
+
+class GridViewWidget extends StatelessWidget {
+  final String selectedClothing;
+  final Function(String) onClothingSelected;
+  final String category;
+
+  GridViewWidget(
+      {required this.selectedClothing,
+      required this.onClothingSelected,
+      required this.category});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
+      height: MediaQuery.of(context).size.height * 0.5,
+      child: GridView.count(
+        crossAxisCount: 3,
+        mainAxisSpacing: 10.0,
+        crossAxisSpacing: 10.0,
+        children: List.generate(
+          clothingItems[category]?.length ?? 0,
+          (index) {
+            String clothingItem = clothingItems[category]?[index] ?? '';
+            return GestureDetector(
+              onTap: () {
+                onClothingSelected(clothingItem);
+              },
+              child: Container(
+                width: 100,
+                height: 100,
+                color: selectedClothing == clothingItem
+                    ? Colors.blue
+                    : Colors.grey,
+                child: Center(
+                  child: Text(
+                    clothingItem,
+                    style: TextStyle(fontSize: 16),
+                  ),
+                ),
+              ),
+            );
+          },
+        ),
+      ),
+    );
+  }
+}
+
+Map<String, List<String>> clothingItems = {
+  'Hat': ['Hat 1', 'Hat 2', 'Hat 3'],
+  'Torso': [
+    'Shirt 1',
+    'Shirt 2',
+    'Shirt 3',
+    'Shirt 4',
+    'Shirt 5',
+    'Shirt 6',
+    'Shirt 6',
+    'Shirt 6',
+    'Shirt 6',
+    'Shirt 6',
+    'Shirt 6'
+  ],
+  'Pants': ['Pants 1', 'Pants 2', 'Pants 3'],
+  'Shoes': ['Shoes 1', 'Shoes 2', 'Shoes 3'],
+};
