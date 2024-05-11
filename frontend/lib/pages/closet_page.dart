@@ -6,14 +6,6 @@ class ClosetPage extends StatefulWidget {
 }
 
 class _ClosetPageState extends State<ClosetPage> {
-  int _selectedTitleIndex = 0;
-
-  void _onTitlePressed(int index) {
-    setState(() {
-      _selectedTitleIndex = index;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,137 +33,32 @@ class _ClosetPageState extends State<ClosetPage> {
           ),
         ),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Center(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  InkWell(
-                    onTap: () => _onTitlePressed(0),
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(vertical: 4.0),
-                      decoration: BoxDecoration(
-                        border: Border(
-                          bottom: BorderSide(
-                            color: _selectedTitleIndex == 0
-                                ? const Color(0xFFFF6678)
-                                : const Color.fromARGB(0, 255, 255, 255),
-                            width: 2.0,
-                          ),
-                        ),
-                      ),
-                      child: const Text(
-                        'My Closet',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 70),
-                  InkWell(
-                    onTap: () => _onTitlePressed(1),
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(vertical: 4.0),
-                      decoration: BoxDecoration(
-                        border: Border(
-                          bottom: BorderSide(
-                            color: _selectedTitleIndex == 1
-                                ? const Color(0xFFFF6678)
-                                : Colors.transparent,
-                            width: 2.0,
-                          ),
-                        ),
-                      ),
-                      child: const Text(
-                        'Virtual Closet',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          const SizedBox(height: 20),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: GridView.builder(
-                itemCount: 5,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                ),
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(10.0),
-                      child: Container(
-                        height: 30,
-                        width: 30,
-                        color: Colors.grey[300],
-                      ),
-                    ),
-                  );
-                },
-              ),
-            ),
-          ),
-        ],
+      body: Container(
+        height: 140,
+        child: ListView(
+          scrollDirection: Axis.horizontal,
+          children: [
+            buildCard(),
+            SizedBox(width: 12),
+            buildCard(),
+            SizedBox(width: 12),
+            buildCard(),
+            SizedBox(width: 12),
+            buildCard(),
+            SizedBox(width: 12),
+            buildCard(),
+            SizedBox(width: 12),
+          ],
+        ),
       ),
     );
   }
+
+  Widget buildCard() => Container(
+        width: 200,
+        height: 200,
+        color: Color(0xFFFF6678),
+        child: Image.network(
+            'https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'),
+      );
 }
-
-
-
-
-
-
-
-// GridView.count(
-      //   crossAxisCount: 3,
-      //   children: [
-      //     Padding(
-      //       padding: const EdgeInsets.all(8.0),
-      //       child: Container(
-      //         height: 30,
-      //         width: 30,
-      //         color: Colors.grey[300],
-      //       ),
-      //     ),
-      //     Padding(
-      //       padding: const EdgeInsets.all(8.0),
-      //       child: Container(
-      //         height: 30,
-      //         width: 30,
-      //         color: Colors.grey[300],
-      //       ),
-      //     ),
-      //     Padding(
-      //       padding: const EdgeInsets.all(8.0),
-      //       child: Container(
-      //         height: 30,
-      //         width: 30,
-      //         color: Colors.grey[300],
-      //       ),
-      //     ),
-      //     Padding(
-      //       padding: const EdgeInsets.all(8.0),
-      //       child: Container(
-      //         height: 30,
-      //         width: 30,
-      //         color: Colors.grey[300],
-      //       ),
-      //     ),
-      //   ],
-      // ),

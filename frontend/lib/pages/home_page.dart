@@ -56,78 +56,87 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
-      body: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                ClothingOption(
-                  color: Colors.grey,
-                  category: 'Hat',
-                  onTap: _showClothingOptions,
-                ),
-                ClothingOption(
-                  color: Colors.grey,
-                  category: 'Torso',
-                  onTap: _showClothingOptions,
-                ),
-                ClothingOption(
-                  color: Colors.grey,
-                  category: 'Pants',
-                  onTap: _showClothingOptions,
-                ),
-                ClothingOption(
-                  color: Colors.grey,
-                  category: 'Shoes',
-                  onTap: _showClothingOptions,
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(
-            width: 30,
-          ),
-          GestureDetector(
-            onTap: changePoseImage,
-            child: Padding(
-              padding: const EdgeInsets.only(top: 25),
-              child: Stack(
-                alignment: Alignment.bottomRight,
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(40.0),
+              child: Row(
                 children: [
-                  Container(
-                    width: 200,
-                    height: 450,
-                    color: Colors.grey,
-                    child: Center(
-                      child: Text(
-                        'Pose Image',
-                        style: TextStyle(fontSize: 20),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      ClothingOption(
+                        color: Colors.grey,
+                        category: 'Hat',
+                        onTap: _showClothingOptions,
                       ),
-                    ),
+                      ClothingOption(
+                        color: Colors.grey,
+                        category: 'Torso',
+                        onTap: _showClothingOptions,
+                      ),
+                      ClothingOption(
+                        color: Colors.grey,
+                        category: 'Pants',
+                        onTap: _showClothingOptions,
+                      ),
+                      ClothingOption(
+                        color: Colors.grey,
+                        category: 'Shoes',
+                        onTap: _showClothingOptions,
+                      ),
+                    ],
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: SizedBox(
-                      width: 50,
-                      height: 50,
-                      child: ElevatedButton(
-                        onPressed: changePoseImage,
-                        child: Icon(Icons.camera_alt),
-                        style: ElevatedButton.styleFrom(
-                          padding: EdgeInsets.zero,
+                  const SizedBox(width: 30),
+                  GestureDetector(
+                    onTap: changePoseImage,
+                    child: Stack(
+                      alignment: Alignment.bottomRight,
+                      children: [
+                        Container(
+                          width: 200,
+                          height: 450,
+                          color: Colors.grey,
+                          child: Center(
+                            child: Text(
+                              'Pose Image',
+                              style: TextStyle(fontSize: 20),
+                            ),
+                          ),
                         ),
-                      ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: SizedBox(
+                            width: 50,
+                            height: 50,
+                            child: ElevatedButton(
+                              onPressed: changePoseImage,
+                              child: Icon(Icons.camera_alt),
+                              style: ElevatedButton.styleFrom(
+                                padding: EdgeInsets.zero,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ],
               ),
             ),
-          ),
-        ],
+            Center(
+              child: MyTryOnButton(
+                onTap: () {
+                  // Add your logic for Try On functionality here
+                  print('Try On tapped');
+                },
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -138,8 +147,11 @@ class ClothingOption extends StatelessWidget {
   final String category;
   final Function onTap;
 
-  ClothingOption(
-      {required this.color, required this.category, required this.onTap});
+  ClothingOption({
+    required this.color,
+    required this.category,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -170,10 +182,11 @@ class GridViewWidget extends StatelessWidget {
   final Function(String) onClothingSelected;
   final String category;
 
-  GridViewWidget(
-      {required this.selectedClothing,
-      required this.onClothingSelected,
-      required this.category});
+  GridViewWidget({
+    required this.selectedClothing,
+    required this.onClothingSelected,
+    required this.category,
+  });
 
   @override
   Widget build(BuildContext context) {
