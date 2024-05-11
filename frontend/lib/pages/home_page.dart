@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/pages/camera_page.dart'; // Import the CameraPage
-import 'package:frontend/pages/forums_page.dart'; // Import the ForumsPage
 
 class HomePage extends StatefulWidget {
   @override
@@ -8,149 +6,121 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  void onTap(int index) {
-    switch (index) {
-      case 0:
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => CameraPage()),
-        );
-        break;
-      case 1:
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => ForumsPage()),
-        );
-        break;
-      default:
-        break;
-    }
-  }
+  String selectedClothing = '';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,
-        title: InkWell(
-          child: Container(
-            padding: const EdgeInsets.symmetric(vertical: 4.0),
-            decoration: const BoxDecoration(
-              border: Border(
-                bottom: BorderSide(
-                  color: Color(0xFFFF6678),
-                  width: 3.0,
-                ),
-              ),
+        title: Text('Virtual Try On'),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              'Welcome, User!',
+              style: TextStyle(fontSize: 16),
             ),
-            child: const Text(
-              'Welcome!!',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
+          ),
+        ],
+      ),
+      body: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                ClothingOption(
+                  color: Colors.blue,
+                  onTap: () {
+                    setState(() {
+                      selectedClothing = 'Hat';
+                    });
+                  },
+                ),
+                ClothingOption(
+                  color: Colors.green,
+                  onTap: () {
+                    setState(() {
+                      selectedClothing = 'Torso';
+                    });
+                  },
+                ),
+                ClothingOption(
+                  color: Colors.red,
+                  onTap: () {
+                    setState(() {
+                      selectedClothing = 'Pants';
+                    });
+                  },
+                ),
+                ClothingOption(
+                  color: Colors.yellow,
+                  onTap: () {
+                    setState(() {
+                      selectedClothing = 'Shoes';
+                    });
+                  },
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(
+            width: 30,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 25),
+            child: Container(
+              width: 200,
+              height: 450,
+              color: Colors.grey,
+              child: Center(
+                child: Text(
+                  'Pose Image',
+                  style: TextStyle(fontSize: 20),
+                ),
               ),
             ),
           ),
-        ),
-        centerTitle: true,
+        ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 30),
-            Center(
-              child: Container(
-                padding: const EdgeInsets.all(40),
-                decoration: BoxDecoration(
-                  color: const Color.fromARGB(83, 255, 102, 120),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: const Column(
-                  children: [
-                    Text(
-                      'Need help with your outfit?',
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    SizedBox(height: 20),
-                    Text(
-                      'We are here to assist you!',
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.normal,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+      // Button to try on selected clothing
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // Implement logic to apply selected clothing to the pose image
+          // For now, just print the selected clothing
+          print('Trying on: $selectedClothing');
+        },
+        child: Icon(Icons.check),
+      ),
+    );
+  }
+}
+
+class ClothingOption extends StatelessWidget {
+  final Color color;
+  final Function onTap;
+
+  ClothingOption({required this.color, required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap as void Function()?,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8.0),
+        child: Container(
+          width: 100,
+          height: 100,
+          color: color,
+          child: Center(
+            child: Text(
+              'Placeholder',
+              style: TextStyle(fontSize: 16),
             ),
-            const SizedBox(height: 20),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10.0),
-              child: const Text(
-                'Use your camera for our fitcheck',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w100),
-              ),
-            ),
-            const SizedBox(height: 20),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10.0),
-              child: GestureDetector(
-                onTap: () => onTap(0),
-                child: Container(
-                  padding: const EdgeInsets.only(
-                      bottom: 12, left: 25, right: 25, top: 12),
-                  decoration: BoxDecoration(
-                    color: const Color(0xFFFF6678),
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                  child: const Text(
-                    'Go to Scan',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(height: 30),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10.0),
-              child: const Text(
-                'Or browse our community for the best outfit advices out there!',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w100),
-              ),
-            ),
-            const SizedBox(height: 20),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10.0),
-              child: GestureDetector(
-                onTap: () => onTap(1),
-                child: Container(
-                  padding: const EdgeInsets.only(
-                      bottom: 12, left: 25, right: 25, top: 12),
-                  decoration: BoxDecoration(
-                    color: const Color(0xFFFF6678),
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                  child: const Text(
-                    'Start Chatting',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ],
+          ),
         ),
       ),
     );

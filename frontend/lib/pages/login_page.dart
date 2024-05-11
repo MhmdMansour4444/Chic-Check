@@ -22,7 +22,7 @@ class _LoginPageState extends State<LoginPage> {
   //sign in user in method
   void signInUser(BuildContext context) async {
     try {
-      final uri = Uri.parse('http://192.168.1.6:8000/api/login');
+      final uri = Uri.parse('http://192.168.1.2:8000/api/login');
       log(uri.toString());
       final response = await http.post(
         uri,
@@ -41,7 +41,7 @@ class _LoginPageState extends State<LoginPage> {
         prefs.setString('token', data['authorisation']['token']);
         print('Token: ${data['authorisation']['token']}');
 
-        Navigator.pushNamed(context, '/preference');
+        Navigator.pushNamed(context, '/homepage');
       } else {
         showDialog(
           context: context,
