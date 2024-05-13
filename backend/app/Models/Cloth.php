@@ -7,14 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cloth extends Model
 {
+    protected $table = 'clothes';
     protected $fillable = [
         'user_id',
         'name',
-        'type',
         'brand',
-        'size',
-        'color',
-        'material',
         'image_path',
         'category_id',
         'is_public',

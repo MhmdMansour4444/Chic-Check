@@ -1,13 +1,57 @@
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:io';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class CardItem {
-  final String urlImage;
-  final String title;
+class Cloth {
+  final String name;
+  final String brand;
+  final String? base64Image;
+  final int categoryId;
 
-  const CardItem({
-    required this.urlImage,
-    required this.title,
+  Cloth({
+    required this.name,
+    required this.brand,
+    required this.base64Image,
+    required this.categoryId,
   });
+
+  factory Cloth.fromJson(Map<String, dynamic> json) {
+    return Cloth(
+      name: json['name'],
+      brand: json['brand'],
+      base64Image: json['image'],
+      categoryId: json['category_id'],
+    );
+  }
+}
+
+class Category {
+  final int id;
+  final String name;
+
+  Category({required this.id, required this.name});
+
+  factory Category.fromJson(Map<String, dynamic> json) {
+    return Category(
+      id: json['id'],
+      name: json['name'],
+    );
+  }
+}
+
+void printAuthToken() async {
+  String? authToken = await AuthService.getAuthToken();
+  print('Auth Token: $authToken');
+}
+
+class AuthService {
+  static Future<String?> getAuthToken() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getString('token');
+  }
 }
 
 class ClosetPage extends StatefulWidget {
@@ -16,32 +60,94 @@ class ClosetPage extends StatefulWidget {
 }
 
 class _ClosetPageState extends State<ClosetPage> {
-  List<CardItem> shoes = [
-    CardItem(
-      urlImage:
-          'https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      title: 'Nike Free run',
-    ),
-    CardItem(
-      urlImage:
-          'https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      title: 'Nike Free run 2',
-    ),
-    CardItem(
-      urlImage:
-          'https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      title: 'Nike Free run 3',
-    ),
-    CardItem(
-      urlImage:
-          'https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      title: 'Nike Free run 4',
-    ),
-  ];
+  List<Cloth> shoes = [];
+  List<Cloth> hats = [];
+  List<Cloth> torsos = [];
+  List<Cloth> pants = [];
+  List<Category> categories = [];
 
-  List<CardItem> hats = [];
-  List<CardItem> torsos = [];
-  List<CardItem> pants = [];
+  @override
+  void initState() {
+    super.initState();
+    printAuthToken();
+    fetchClothes();
+    fetchCategories();
+  }
+
+  Future<void> fetchClothes() async {
+    try {
+      final authToken = await AuthService.getAuthToken();
+      final response = await http.get(
+        Uri.parse('http://192.168.1.2:8000/api/clothes'),
+        headers: {'Authorization': 'Bearer $authToken'},
+      );
+      if (response.statusCode == 200) {
+        final List<dynamic>? clothJson = jsonDecode(response.body);
+        if (clothJson != null) {
+          setState(() {
+            for (var json in clothJson) {
+              Cloth cloth = Cloth.fromJson(json);
+              switch (cloth.categoryId) {
+                case 1:
+                  hats.add(cloth);
+                  break;
+                case 2:
+                  torsos.add(cloth);
+                  break;
+                case 3:
+                  pants.add(cloth);
+                  break;
+                case 4:
+                  shoes.add(cloth);
+                  break;
+              }
+            }
+          });
+        } else {
+          throw Exception('Response body is null');
+        }
+      } else {
+        throw Exception('Failed to load clothes: ${response.statusCode}');
+      }
+    } catch (e) {
+      print('Error fetching clothes: $e');
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+              'Failed to load clothes. Please check your internet connection.'),
+        ),
+      );
+    }
+  }
+
+  Future<void> fetchCategories() async {
+    try {
+      final authToken = await AuthService.getAuthToken(); // Retrieve auth token
+      final response = await http.get(
+        Uri.parse('http://192.168.1.2:8000/api/categories'),
+        headers: {
+          'Authorization': 'Bearer $authToken'
+        }, // Use auth token in the request
+      );
+      if (response.statusCode == 200) {
+        final List<dynamic> categoryJson = jsonDecode(response.body);
+        setState(() {
+          categories =
+              categoryJson.map((json) => Category.fromJson(json)).toList();
+        });
+      } else {
+        throw Exception('Failed to load categories');
+      }
+    } catch (e) {
+      print('Error fetching categories: $e');
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+              'Failed to load categories. Please check your internet connection.'),
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -73,12 +179,29 @@ class _ClosetPageState extends State<ClosetPage> {
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            buildCategoryListView(title: 'Shoes', items: shoes),
-            buildCategoryListView(title: 'Hats', items: hats),
-            buildCategoryListView(title: 'Torsos', items: torsos),
-            buildCategoryListView(title: 'Pants', items: pants),
-          ],
+          children: categories.map((category) {
+            List<Cloth> categoryItems = [];
+            switch (category.id) {
+              case 1:
+                categoryItems = hats;
+                break;
+              case 2:
+                categoryItems = torsos;
+                break;
+              case 3:
+                categoryItems = pants;
+                break;
+              case 4:
+                categoryItems = shoes;
+                break;
+              default:
+                break;
+            }
+            return buildCategoryListView(
+              category: category, // Pass a single Category object here
+              items: categoryItems,
+            );
+          }).toList(),
         ),
       ),
       floatingActionButton: FloatingActionButton(
@@ -93,38 +216,41 @@ class _ClosetPageState extends State<ClosetPage> {
   }
 
   Widget buildCategoryListView(
-      {required String title, required List<CardItem> items}) {
-    return Container(
-      height: 250,
-      margin: const EdgeInsets.symmetric(vertical: 12.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: Text(
-              title,
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
+      {required Category category, required List<Cloth> items}) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          child: Text(
+            category.name,
+            style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
             ),
           ),
-          SizedBox(height: 8),
-          Expanded(
-            child: ListView.separated(
-              scrollDirection: Axis.horizontal,
-              itemCount: items.length,
-              separatorBuilder: (context, _) => SizedBox(width: 12),
-              itemBuilder: (context, index) => buildCard(items[index]),
-            ),
+        ),
+        SizedBox(height: 8),
+        Container(
+          height: 250,
+          child: ListView.separated(
+            scrollDirection: Axis.horizontal,
+            itemCount:
+                items.where((item) => item.categoryId == category.id).length,
+            separatorBuilder: (context, _) => SizedBox(width: 12),
+            itemBuilder: (context, index) {
+              final filteredItems = items
+                  .where((item) => item.categoryId == category.id)
+                  .toList();
+              return buildCard(filteredItems[index]);
+            },
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 
-  Widget buildCard(CardItem item) {
+  Widget buildCard(Cloth item) {
     return Container(
       width: 180,
       decoration: BoxDecoration(
@@ -147,17 +273,22 @@ class _ClosetPageState extends State<ClosetPage> {
               topLeft: Radius.circular(12),
               topRight: Radius.circular(12),
             ),
-            child: Image.network(
-              item.urlImage,
-              width: 180,
-              height: 120,
-              fit: BoxFit.cover,
-            ),
+            child: item.base64Image != null
+                ? Image.memory(
+                    base64Decode(item.base64Image!),
+                    width: 180,
+                    height: 120,
+                    fit: BoxFit.cover,
+                  )
+                : SizedBox(
+                    width: 180,
+                    height: 120,
+                  ),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              item.title,
+              item.name,
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
@@ -183,10 +314,10 @@ class _ClosetPageState extends State<ClosetPage> {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              _buildAddItemButton(context, 'Shoes'),
               _buildAddItemButton(context, 'Hats'),
               _buildAddItemButton(context, 'Torsos'),
               _buildAddItemButton(context, 'Pants'),
+              _buildAddItemButton(context, 'Shoes'),
             ],
           ),
         );
@@ -213,28 +344,84 @@ class _ClosetPageState extends State<ClosetPage> {
     );
   }
 
+  int _getCategoryId(String category) {
+    switch (category) {
+      case 'Hats':
+        return 1;
+      case 'Torsos':
+        return 2;
+      case 'Pants':
+        return 3;
+      case 'Shoes':
+        return 4;
+      default:
+        return 0;
+    }
+  }
+
   void _showAddItemDialog(BuildContext context, String category) {
-    TextEditingController urlController = TextEditingController();
     TextEditingController titleController = TextEditingController();
+    TextEditingController brandController = TextEditingController();
+
+    File? _image;
+
+    Future<void> _getImageFromCamera() async {
+      final picker = ImagePicker();
+      final pickedFile = await picker.pickImage(source: ImageSource.camera);
+
+      setState(() {
+        _image = pickedFile != null ? File(pickedFile.path) : null;
+      });
+    }
+
+    Future<void> _getImageFromGallery() async {
+      final picker = ImagePicker();
+      final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+
+      setState(() {
+        _image = pickedFile != null ? File(pickedFile.path) : null;
+      });
+    }
 
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text('Add New Item to $category'),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              TextField(
-                controller: urlController,
-                decoration: InputDecoration(labelText: 'Image URL'),
-              ),
-              TextField(
-                controller: titleController,
-                decoration: InputDecoration(labelText: 'Title'),
-              ),
-            ],
+          content: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Center(
+                  child: _image == null
+                      ? Text('No image selected.')
+                      : Image.file(_image!),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ElevatedButton(
+                      onPressed: _getImageFromCamera,
+                      child: Text('Take Picture'),
+                    ),
+                    SizedBox(width: 10),
+                    ElevatedButton(
+                      onPressed: _getImageFromGallery,
+                      child: Text('Select from Gallery'),
+                    ),
+                  ],
+                ),
+                TextField(
+                  controller: titleController,
+                  decoration: InputDecoration(labelText: 'Title'),
+                ),
+                TextField(
+                  controller: brandController,
+                  decoration: InputDecoration(labelText: 'Brand (Optional)'),
+                ),
+              ],
+            ),
           ),
           actions: [
             TextButton(
@@ -244,19 +431,70 @@ class _ClosetPageState extends State<ClosetPage> {
               child: Text('Cancel'),
             ),
             ElevatedButton(
-              onPressed: () {
-                String url = urlController.text;
+              onPressed: () async {
                 String title = titleController.text;
-                if (url.isNotEmpty && title.isNotEmpty) {
-                  addItem(category, CardItem(urlImage: url, title: title));
-                  Navigator.of(context).pop();
+                String brand = brandController.text;
+                if (title.isNotEmpty && _image != null) {
+                  // Get category ID based on its name
+                  int categoryId = _getCategoryId(category);
+                  // Convert image to base64
+                  List<int> imageBytes = await _image!.readAsBytes();
+                  String base64Image = base64Encode(imageBytes);
+
+                  final authToken = await AuthService.getAuthToken();
+
+                  // Include the data in the request body
+                  Map<String, dynamic> newItemData = {
+                    'name': title,
+                    'brand': brand,
+                    'image': base64Image,
+                    'category_id': categoryId,
+                  };
+
+                  try {
+                    final response = await http.post(
+                      Uri.parse('http://192.168.1.2:8000/api/clothes'),
+                      body: jsonEncode(newItemData),
+                      headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer $authToken',
+                      },
+                    );
+
+                    if (response.statusCode == 201) {
+                      // If the item was added successfully, you can update the UI accordingly
+                      Cloth newItem = Cloth.fromJson(jsonDecode(response.body));
+                      addItem(category, newItem);
+                      Navigator.of(context).pop();
+                    } else {
+                      print('Failed to add item: ${response.body}');
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            'Failed to add item. Please try again later.',
+                          ),
+                        ),
+                      );
+                    }
+                  } catch (e) {
+                    print('Error adding item: $e');
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(
+                          'Error adding item. Please try again later.',
+                        ),
+                      ),
+                    );
+                  }
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content:
+                          Text('Please provide a title and select an image.'),
+                    ),
+                  );
                 }
               },
-              style: ElevatedButton.styleFrom(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-              ),
               child: Text('Add'),
             ),
           ],
@@ -265,13 +503,8 @@ class _ClosetPageState extends State<ClosetPage> {
     );
   }
 
-  void addItem(String category, CardItem item) {
+  void addItem(String category, Cloth item) {
     switch (category) {
-      case 'Shoes':
-        setState(() {
-          shoes.add(item);
-        });
-        break;
       case 'Hats':
         setState(() {
           hats.add(item);
@@ -285,6 +518,11 @@ class _ClosetPageState extends State<ClosetPage> {
       case 'Pants':
         setState(() {
           pants.add(item);
+        });
+        break;
+      case 'Shoes':
+        setState(() {
+          shoes.add(item);
         });
         break;
     }

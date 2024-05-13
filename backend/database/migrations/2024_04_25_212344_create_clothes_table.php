@@ -13,11 +13,7 @@ return new class extends Migration {
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->string('name', 100);
-            $table->string('type', 50);
             $table->string('brand', 50)->nullable();
-            $table->string('size', 20)->nullable();
-            $table->string('color', 50)->nullable();
-            $table->string('material', 50)->nullable();
             $table->string('image_path', 255);
             $table->unsignedBigInteger('category_id');
             $table->tinyInteger('is_public')->default(0);
