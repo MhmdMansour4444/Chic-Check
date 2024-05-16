@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/pages/home_page.dart';
 import 'package:frontend/pages/closet_page.dart';
-import 'package:frontend/pages/camera_page.dart';
 import 'package:frontend/pages/forums_page.dart';
 import 'package:frontend/pages/saved_page.dart';
 
@@ -18,9 +17,7 @@ class _MyNavBarState extends State<MyNavBar> {
   final List<Widget> _screens = [
     HomePage(),
     ClosetPage(),
-    CameraPage(),
     ForumsPage(),
-    SavedPage(),
   ];
 
   void _onItemTapped(int index) {
@@ -62,11 +59,7 @@ class _MyNavBarState extends State<MyNavBar> {
               BottomNavigationBarItem(
                   icon: Icon(Icons.checkroom_rounded), label: 'Closet'),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.camera_outlined), label: 'Camera'),
-              BottomNavigationBarItem(
                   icon: Icon(Icons.message_rounded), label: 'Forums'),
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.bookmarks_outlined), label: 'Saved'),
             ],
           ),
         ),

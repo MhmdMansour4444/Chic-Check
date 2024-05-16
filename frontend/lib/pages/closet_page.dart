@@ -7,7 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class Cloth {
   final String name;
-  final String brand;
+  final String? brand;
   final String? base64Image;
   final int categoryId;
 
@@ -76,13 +76,13 @@ class _ClosetPageState extends State<ClosetPage> {
 
   Future<void> fetchClothes() async {
     try {
-      final authToken = await AuthService.getAuthToken();
       final response = await http.get(
         Uri.parse('http://192.168.1.2:8000/api/clothes'),
-        headers: {'Authorization': 'Bearer $authToken'},
       );
+      print(response.statusCode);
       if (response.statusCode == 200) {
         final List<dynamic>? clothJson = jsonDecode(response.body);
+        print("any");
         if (clothJson != null) {
           setState(() {
             for (var json in clothJson) {
@@ -122,12 +122,10 @@ class _ClosetPageState extends State<ClosetPage> {
 
   Future<void> fetchCategories() async {
     try {
-      final authToken = await AuthService.getAuthToken(); // Retrieve auth token
+      final authToken = await AuthService.getAuthToken();
       final response = await http.get(
         Uri.parse('http://192.168.1.2:8000/api/categories'),
-        headers: {
-          'Authorization': 'Bearer $authToken'
-        }, // Use auth token in the request
+        headers: {'Authorization': 'Bearer $authToken'},
       );
       if (response.statusCode == 200) {
         final List<dynamic> categoryJson = jsonDecode(response.body);
@@ -179,29 +177,22 @@ class _ClosetPageState extends State<ClosetPage> {
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: categories.map((category) {
-            List<Cloth> categoryItems = [];
-            switch (category.id) {
-              case 1:
-                categoryItems = hats;
-                break;
-              case 2:
-                categoryItems = torsos;
-                break;
-              case 3:
-                categoryItems = pants;
-                break;
-              case 4:
-                categoryItems = shoes;
-                break;
-              default:
-                break;
-            }
-            return buildCategoryListView(
-              category: category, // Pass a single Category object here
-              items: categoryItems,
-            );
-          }).toList(),
+          children: [
+            for (int i = 0; i < categories.length; i++) ...[
+              buildCategoryListView(
+                category: categories[i],
+                items: getCategoryItems(categories[i].id),
+              ),
+              if (i < categories.length - 1)
+                Divider(
+                  color: Colors.grey,
+                  height: 20,
+                  thickness: 1,
+                  indent: 16,
+                  endIndent: 16,
+                ),
+            ],
+          ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
@@ -213,6 +204,21 @@ class _ClosetPageState extends State<ClosetPage> {
         backgroundColor: Colors.grey[200],
       ),
     );
+  }
+
+  List<Cloth> getCategoryItems(int categoryId) {
+    switch (categoryId) {
+      case 1:
+        return hats;
+      case 2:
+        return torsos;
+      case 3:
+        return pants;
+      case 4:
+        return shoes;
+      default:
+        return [];
+    }
   }
 
   Widget buildCategoryListView(
@@ -274,8 +280,8 @@ class _ClosetPageState extends State<ClosetPage> {
               topRight: Radius.circular(12),
             ),
             child: item.base64Image != null
-                ? Image.memory(
-                    base64Decode(item.base64Image!),
+                ? Image.network(
+                    "http://http://192.168.1.2:8000/storage/clothes/${item.base64Image}",
                     width: 180,
                     height: 120,
                     fit: BoxFit.cover,
@@ -435,15 +441,11 @@ class _ClosetPageState extends State<ClosetPage> {
                 String title = titleController.text;
                 String brand = brandController.text;
                 if (title.isNotEmpty && _image != null) {
-                  // Get category ID based on its name
                   int categoryId = _getCategoryId(category);
-                  // Convert image to base64
                   List<int> imageBytes = await _image!.readAsBytes();
                   String base64Image = base64Encode(imageBytes);
 
                   final authToken = await AuthService.getAuthToken();
-
-                  // Include the data in the request body
                   Map<String, dynamic> newItemData = {
                     'name': title,
                     'brand': brand,
@@ -462,7 +464,6 @@ class _ClosetPageState extends State<ClosetPage> {
                     );
 
                     if (response.statusCode == 201) {
-                      // If the item was added successfully, you can update the UI accordingly
                       Cloth newItem = Cloth.fromJson(jsonDecode(response.body));
                       addItem(category, newItem);
                       Navigator.of(context).pop();
