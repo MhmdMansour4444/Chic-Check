@@ -62,7 +62,7 @@
 ### User Screens (Mobile)
 | Login screen  | Register screen | Landing screen | ClosetPage screen |
 | ---| ---| ---| ---|
-| (<img src="/screenshots/login.PNG">) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) |
+| (<img src="login.PNG">) | (<img src="register.PNG">) | (<img src="homepage.PNG">) | (<img src="closet.PNG">) |
 | Home screen  | Menu Screen | Order Screen | Checkout Screen |
 | ![Landing](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) |
 
