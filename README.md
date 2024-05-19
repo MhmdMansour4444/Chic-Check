@@ -114,16 +114,21 @@ This is an example of how to list things you need to use the software and how to
 
 _Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
 
-1. Get a free API Key at [example](https://example.com)
-2. Clone the repo
-   git clone [github](https://github.com/your_username_/Project-Name.git)
-3. Install NPM packages
-   ```sh
-   npm install
+1. Clone the repo
+   git clone [github](https://github.com/MhmdMansour4444/Chic-Check.git)
+2. Install flutter dependencies
+3. run the laravel server 
+```sh
+   php artisan server --host= your ip address
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
+4. run the node server for the ai api
+```sh
+  node ai.js
+```
+
+
+  
+
+   
 
 Now, you should be able to run Coffee Express locally and explore its features.
