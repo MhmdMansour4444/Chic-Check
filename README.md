@@ -131,4 +131,4 @@ _Below is an example of how you can instruct your audience on installing and set
 
    
 
-Now, you should be able to run Coffee Express locally and explore its features.
+Now, you should be able to run Chic Check locally and explore its features.
