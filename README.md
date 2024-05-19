@@ -62,16 +62,9 @@
 ### User Screens (Mobile)
 | Login screen  | Register screen | Landing screen | ClosetPage screen |
 | ---| ---| ---| ---|
-| <img src="login.PNG"> | (<img src="register.PNG">) | (<img src="homepage.PNG">) | (<img src="closet.PNG">) |
-| Home screen  | Menu Screen | Order Screen | Checkout Screen |
-| ![Landing](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) |
-
-### Admin Screens (Web)
-| Login screen  | Register screen |  Landing screen |
-| ---| ---| ---|
-| ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
-| Home screen  | Menu Screen | Order Screen |
-| ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
+| ![Landing](https://placehold.co/900x1600) | ![Landing](https://placehold.co/900x1600) | ![Landing](https://placehold.co/900x1600) | ![Landing](https://placehold.co/900x1600) |
+| ForumPage screen  |
+| ![Landing](https://placehold.co/900x1600) |
 
 <br><br>
 
