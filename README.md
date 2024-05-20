@@ -37,10 +37,6 @@
 - Project Figma design [figma](https://www.figma.com/design/HHCXTOyB9V66AzZvlJPlIx/Chic-Check?node-id=0-1&t=zkAHpNVzG2iOCu6k-0)
 
 
-### Mockups
-| Home screen  | Menu Screen | Order Screen |
-| ---| ---| ---|
-| ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
 
 <br><br>
 
@@ -62,9 +58,9 @@
 ### User Screens (Mobile)
 | Login screen  | Register screen | Landing screen | ClosetPage screen |
 | ---| ---| ---| ---|
-| ![login](./readme/login.png) | ![Landing](https://placehold.co/900x1600) | ![Landing](https://placehold.co/900x1600) | ![Landing](https://placehold.co/900x1600) |
+| ![login](./readme/login.png) | ![Register](./readme/register.png) | ![Landing](./readme/homepage.png) | ![Closet](./readme/closetpage.png) |
 | ForumPage screen  |
-| ![Landing](https://placehold.co/900x1600) |
+| ![Forum](./readme/Forum.png) |
 
 <br><br>
 
@@ -76,31 +72,16 @@
 
 - This project uses advanced prompt engineering techniques to optimize the interaction with natural language processing models. By skillfully crafting input instructions, we tailor the behavior of the models to achieve precise and efficient language understanding and generation for various tasks and preferences.
 
-<br><br>
-
-<!-- AWS Deployment -->
-<img src="./readme/title8.svg"/>
-
-###  Efficient AI Deployment: Unleashing the Potential with AWS Integration:
-
-- This project leverages AWS deployment strategies to seamlessly integrate and deploy natural language processing models. With a focus on scalability, reliability, and performance, we ensure that AI applications powered by these models deliver robust and responsive solutions for diverse use cases.
+- Ai Used: Gpt-4o.
 
 <br><br>
 
-<!-- Unit Testing -->
-<img src="./readme/title9.svg"/>
-
-###  Precision in Development: Harnessing the Power of Unit Testing:
-
-- This project employs rigorous unit testing methodologies to ensure the reliability and accuracy of code components. By systematically evaluating individual units of the software, we guarantee a robust foundation, identifying and addressing potential issues early in the development process.
-
-<br><br>
 
 
 <!-- How to run -->
 <img src="./readme/title10.svg"/>
 
-> To set up Coffee Express locally, follow these steps:
+> To set up Chic Check locally, follow these steps:
 
 ### Prerequisites
 
