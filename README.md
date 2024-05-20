@@ -62,9 +62,9 @@
 ### User Screens (Mobile)
 | Login screen  | Register screen | Landing screen | ClosetPage screen |
 | ---| ---| ---| ---|
-| ![login](./readme/login.png) | ![Landing](https://placehold.co/900x1600) | ![Landing](https://placehold.co/900x1600) | ![Landing](https://placehold.co/900x1600) |
+| ![login](./readme/login.png) | ![Register](./readme/register.png) | ![Landing](./readme/homepage.png) | ![Closet](./readme/closetpage.png) |
 | ForumPage screen  |
-| ![Landing](https://placehold.co/900x1600) |
+| ![Forum](./readme/forum.png) |
 
 <br><br>
 
