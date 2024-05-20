@@ -37,10 +37,6 @@
 - Project Figma design [figma](https://www.figma.com/design/HHCXTOyB9V66AzZvlJPlIx/Chic-Check?node-id=0-1&t=zkAHpNVzG2iOCu6k-0)
 
 
-### Mockups
-| Home screen  | Menu Screen | Order Screen |
-| ---| ---| ---|
-| ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
 
 <br><br>
 
