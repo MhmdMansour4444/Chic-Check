@@ -45,7 +45,7 @@
 ### Mockups
 | login screen  | Register Screen | Homepage Screen |
 | ---| ---| ---|
-| ![Landing](./readme/loginMockup.PNG) | ![fsdaf](./readme/registerMockup.PNG) | ![fsdaf](./readme/homepage.png) |
+| ![Landing](./readme/loginMockup.PNG) | ![fsdaf](./readme/registerMockup.PNG) | ![fsdaf](./readme/homepageMockup.png) |
 
 
 
