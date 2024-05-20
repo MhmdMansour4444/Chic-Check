@@ -64,7 +64,7 @@
 | ---| ---| ---| ---|
 | ![login](./readme/login.png) | ![Register](./readme/register.png) | ![Landing](./readme/homepage.png) | ![Closet](./readme/closetpage.png) |
 | ForumPage screen  |
-| ![Forum](./readme/forum.png) |
+| ![Forum](./readme/Forum.png) |
 
 <br><br>
 
