@@ -42,6 +42,13 @@
 - Project Figma design [figma](https://www.figma.com/design/HHCXTOyB9V66AzZvlJPlIx/Chic-Check?node-id=0-1&t=zkAHpNVzG2iOCu6k-0)
 
 
+### Mockups
+| login screen  | Register Screen | Homepage Screen |
+| ---| ---| ---|
+| ![Landing](./readme/loginMockup.PNG) | ![fsdaf](./readme/registerMockup.PNG) | ![fsdaf](./readme/homepage.png) |
+
+
+
 
 <br><br>
 
