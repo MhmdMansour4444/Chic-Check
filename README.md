@@ -73,7 +73,8 @@
 - This project uses advanced prompt engineering techniques to optimize the interaction with natural language processing models. By skillfully crafting input instructions, we tailor the behavior of the models to achieve precise and efficient language understanding and generation for various tasks and preferences.
 
 - Ai Used: Gpt-4o.
-![Ai](./readme/aijs.png)
+  
+![Ai](./readme/aijs.PNG)
 
 <br><br>
 
