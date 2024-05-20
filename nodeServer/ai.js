@@ -66,7 +66,6 @@ const processImageAndText = (imageURL, rawText) => {
         }
         const output = response.outputs[0];
 
-        // Extracting only the raw text from the response
         const rawResponse = output.data.text.raw;
 
         resolve(rawResponse);
@@ -87,7 +86,7 @@ app.post("/process", async (req, res) => {
 
     const rawResponse = await processImageAndText(imageURL, rawText);
 
-    res.send({ rawText: rawResponse }); // Sending only the raw text as response
+    res.send({ rawText: rawResponse }); 
   } catch (error) {
     console.error("Error:", error.message);
     res.status(500).send("Internal Server Error");
