@@ -100,7 +100,7 @@
 <!-- How to run -->
 <img src="./readme/title10.svg"/>
 
-> To set up Coffee Express locally, follow these steps:
+> To set up Chic Check locally, follow these steps:
 
 ### Prerequisites
 
