@@ -172,7 +172,7 @@ class _HomePageState extends State<HomePage> {
                 child: isLoading
                     ? CircularProgressIndicator(
                         valueColor: AlwaysStoppedAnimation<Color>(
-                            Color(0xFFFF6678)), // Change the color here
+                            Colors.red), // Change the color here
                       )
                     : Text(
                         'Get Approval',

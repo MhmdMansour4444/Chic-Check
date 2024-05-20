@@ -8,13 +8,13 @@ import 'package:shared_preferences/shared_preferences.dart';
 class Cloth {
   final String name;
   final String? brand;
-  final String? base64Image;
+  final String? imageUrl; // New field for image URL
   final int categoryId;
 
   Cloth({
     required this.name,
     required this.brand,
-    required this.base64Image,
+    required this.imageUrl,
     required this.categoryId,
   });
 
@@ -22,7 +22,8 @@ class Cloth {
     return Cloth(
       name: json['name'],
       brand: json['brand'],
-      base64Image: json['image'],
+      imageUrl:
+          json['image_url'], // Update to match the key returned by your backend
       categoryId: json['category_id'],
     );
   }
@@ -279,9 +280,9 @@ class _ClosetPageState extends State<ClosetPage> {
               topLeft: Radius.circular(12),
               topRight: Radius.circular(12),
             ),
-            child: item.base64Image != null
+            child: item.imageUrl != null && Uri.parse(item.imageUrl!).isAbsolute
                 ? Image.network(
-                    "http://http://192.168.1.2:8000/storage/clothes/${item.base64Image}",
+                    item.imageUrl!,
                     width: 180,
                     height: 120,
                     fit: BoxFit.cover,
