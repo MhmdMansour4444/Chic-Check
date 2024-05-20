@@ -16,7 +16,7 @@
 - As a user, I want to customize my outfit, so I can change or keep specific items according to a criteria and save it.
 - As a user, I want to check for the latest outfit trends and whats popular on the app, so it can ease up my choice throughtout the days.
 
-  ### Admin / Company
+### Admin / Company
 - As a company using this app, I want to promote my products, so I should have access to adding them.
 - As a company, I want to retire some of my products, so I should be able to remove recently added ones.
 - As a company, I want to reward users using the app, so I have the ability to put promotions and coupons in it.
